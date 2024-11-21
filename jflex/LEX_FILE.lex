@@ -112,7 +112,6 @@ Comment2	= "/*" {ValidCommentChar}* "*/"
 "return"		{ return symbol(TokenNames.RETURN); }
 "new"			{ return symbol(TokenNames.NEW); }
 "if"			{ return symbol(TokenNames.IF); }
-"string"		{ return symbol(TokenNames.TYPE_STRING); }
 "("			{ return symbol(TokenNames.LPAREN); }
 ")"			{ return symbol(TokenNames.RPAREN); }
 "["			{ return symbol(TokenNames.LBRACK); }
