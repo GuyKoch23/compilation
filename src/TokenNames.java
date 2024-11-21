@@ -37,8 +37,8 @@ public interface TokenNames {
   public static final int STRING = 31;
   public static final int ERROR = 32; // TODO: remove this token maybe
 
-  public static final Map<String, String> tokenMap = Map.ofEntries(
-    entry(Integer.toString(EOF), "EOF"),
+  public static final HashMap<Integer, String> tokenMap = new HashMap<>();
+    tokenMap.put(EOF, "EOF");
     entry(Integer.toString(PLUS), "PLUS"),
     entry(Integer.toString(MINUS), "MINUS"),
     entry(Integer.toString(TIMES), "TIMES"),
