@@ -66,7 +66,7 @@ import java_cup.runtime.*;
 	/**********************************************/
 	public int getTokenStartPosition() { return yycolumn + 1; } 
 
-	public String getTokenName()
+	/*public String getTokenName()*/
 %}
 
 /***********************/
