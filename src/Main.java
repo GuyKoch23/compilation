@@ -45,7 +45,11 @@ public class Main
 				/************************/
 				/* [6] Print to console */
 				/************************/
+<<<<<<< HEAD
 				System.out.print(TokenNames[s.sym-1]);
+=======
+				System.out.print(TokenNames.tokenMap.get(s.sym));
+>>>>>>> 625c631d124102decb183703c651ef5c804e06c2
 				System.out.print("[");
 				System.out.print(l.getLine());
 				System.out.print(",");
@@ -85,5 +89,3 @@ public class Main
 		}
 	}
 }
-
-

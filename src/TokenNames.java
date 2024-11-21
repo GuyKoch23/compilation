@@ -1,5 +1,4 @@
 public interface TokenNames {
-  /* terminals */
   public static final int EOF = 0;
   public static final int PLUS = 1;
   public static final int MINUS = 2;
@@ -40,4 +39,3 @@ public interface TokenNames {
     "LBRACE", "RBRACE", "COMMA", "DOT", "SEMICOLON", "ASSIGN", "EQ", "LT", "GT", "STRING", "ERROR"
   };
 }
-
