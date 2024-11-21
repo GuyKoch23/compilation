@@ -46,22 +46,35 @@ public class Main
 				/* [6] Print to console */
 				/************************/
 				System.out.print(TokenNames.tokens[s.sym]);
+				if (s.sym == TokenNames.TYPE_INT || s.sym == TokenNames.ID || s.sym == TokenNames.STRING) {
+					System.out.print("(");
+					System.out.print(s.value);
+					System.out.print(")");
+				}
 				System.out.print("[");
 				System.out.print(l.getLine());
 				System.out.print(",");
 				System.out.print(l.getTokenStartPosition());
-				System.out.print("]:");
-				System.out.print(s.value);
+				System.out.print("]");
 				System.out.print("\n");
 				
 				/*********************/
 				/* [7] Print to file */
 				/*********************/
-				file_writer.print(l.getLine());
-				file_writer.print(": ");
-				file_writer.print(s.value);
-				file_writer.print("\n");
 				
+				file_writer.print(TokenNames.tokens[s.sym]);
+				if (s.sym == TokenNames.TYPE_INT || s.sym == TokenNames.ID || s.sym == TokenNames.STRING) {
+					file_writer.print("(");
+					file_writer.print(s.value);
+					file_writer.print(")");
+				}
+				file_writer.print("[");
+				file_writer.print(l.getLine());
+				file_writer.print(",");
+				file_writer.print(l.getTokenStartPosition());
+				file_writer.print("]");
+				file_writer.print("\n");
+
 				/***********************/
 				/* [8] Read next token */
 				/***********************/
@@ -81,6 +94,8 @@ public class Main
 			     
 		catch (Exception e)
 		{
+			file_writer = new PrintWriter(outputFilename);
+			file_writer.print("ERROR");
 			e.printStackTrace();
 		}
 	}

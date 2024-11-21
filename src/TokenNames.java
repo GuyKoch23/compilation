@@ -18,24 +18,23 @@ public interface TokenNames {
   public static final int RETURN = 16;
   public static final int NEW = 17;
   public static final int IF = 18;
-  public static final int TYPE_STRING = 19;
-  public static final int LBRACK = 20;
-  public static final int RBRACK = 21;
-  public static final int LBRACE = 22;
-  public static final int RBRACE = 23;
-  public static final int COMMA = 24;
-  public static final int DOT = 25;
-  public static final int SEMICOLON = 26;
-  public static final int ASSIGN = 27;
-  public static final int EQ = 28;
-  public static final int LT = 29;
-  public static final int GT = 30;
-  public static final int STRING = 31;
-  public static final int ERROR = 32; // TODO: remove this token maybe
+  public static final int LBRACK = 19;
+  public static final int RBRACK = 20;
+  public static final int LBRACE = 21;
+  public static final int RBRACE = 22;
+  public static final int COMMA = 23;
+  public static final int DOT = 24;
+  public static final int SEMICOLON = 25;
+  public static final int ASSIGN = 26;
+  public static final int EQ = 27;
+  public static final int LT = 28;
+  public static final int GT = 29;
+  public static final int STRING = 30;
+  public static final int ERROR = 31; // TODO: remove this token maybe
 
   String[] tokens = {
     "EOF", "PLUS", "MINUS", "TIMES", "DIVIDE", "LPAREN", "RPAREN", "NUMBER", "ID", "CLASS", "NIL", "ARRAY",
-    "WHILE", "TYPE_INT", "TYPE_VOID", "EXTENDS", "RETURN", "NEW", "IF", "TYPE_STRING", "LBRACK", "RBRACK",
-    "LBRACE", "RBRACE", "COMMA", "DOT", "SEMICOLON", "ASSIGN", "EQ", "LT", "GT", "STRING", "ERROR"
+    "WHILE", "TYPE_INT", "TYPE_VOID", "EXTENDS", "RETURN", "NEW", "IF", "LBRACK", "RBRACK", "LBRACE", "RBRACE",
+    "COMMA", "DOT", "SEMICOLON", "ASSIGN", "EQ", "LT", "GT", "STRING", "ERROR"
   };
 }
