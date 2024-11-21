@@ -1,3 +1,5 @@
+import java.util.Map;
+
 public interface TokenNames {
   /* terminals */
   public static final int EOF = 0;
