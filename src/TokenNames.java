@@ -12,7 +12,7 @@ public interface TokenNames {
   public static final int NIL = 10;
   public static final int ARRAY = 11;
   public static final int WHILE = 12;
-  public static final int TYPE_INT = 13;
+  public static final int INT = 13;
   public static final int TYPE_VOID = 14;
   public static final int EXTENDS = 15;
   public static final int RETURN = 16;
@@ -34,7 +34,7 @@ public interface TokenNames {
 
   String[] tokens = {
     "EOF", "PLUS", "MINUS", "TIMES", "DIVIDE", "LPAREN", "RPAREN", "NUMBER", "ID", "CLASS", "NIL", "ARRAY",
-    "WHILE", "TYPE_INT", "TYPE_VOID", "EXTENDS", "RETURN", "NEW", "IF", "LBRACK", "RBRACK", "LBRACE", "RBRACE",
+    "WHILE", "INT", "TYPE_VOID", "EXTENDS", "RETURN", "NEW", "IF", "LBRACK", "RBRACK", "LBRACE", "RBRACE",
     "COMMA", "DOT", "SEMICOLON", "ASSIGN", "EQ", "LT", "GT", "STRING", "ERROR"
   };
 }

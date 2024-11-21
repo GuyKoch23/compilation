@@ -46,7 +46,7 @@ public class Main
 				/* [6] Print to console */
 				/************************/
 				System.out.print(TokenNames.tokens[s.sym]);
-				if (s.sym == TokenNames.TYPE_INT || s.sym == TokenNames.ID || s.sym == TokenNames.STRING) {
+				if (s.sym == TokenNames.INT || s.sym == TokenNames.ID || s.sym == TokenNames.STRING) {
 					System.out.print("(");
 					System.out.print(s.value);
 					System.out.print(")");
@@ -57,14 +57,14 @@ public class Main
 				System.out.print(l.getTokenStartPosition());
 				System.out.print("]");
 				System.out.print("\n");
-				
+
 				
 				/*********************/
 				/* [7] Print to file */
 				/*********************/
 				
 				file_writer.print(TokenNames.tokens[s.sym]);
-				if (s.sym == TokenNames.TYPE_INT || s.sym == TokenNames.ID || s.sym == TokenNames.STRING) {
+				if (s.sym == TokenNames.INT || s.sym == TokenNames.ID || s.sym == TokenNames.STRING) {
 					file_writer.print("(");
 					file_writer.print(s.value);
 					file_writer.print(")");

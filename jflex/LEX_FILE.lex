@@ -106,7 +106,7 @@ Comment2	= "/*" {ValidCommentChar}* "*/"
 "nil"			{ return symbol(TokenNames.NIL); }
 "array"		{ return symbol(TokenNames.ARRAY); }
 "while"		{ return symbol(TokenNames.WHILE); }
-/*"int"			{ return symbol(TokenNames.TYPE_INT); }*/
+/*"int"			{ return symbol(TokenNames.INT); }*/
 "void"		{ return symbol(TokenNames.TYPE_VOID); }
 "extends"		{ return symbol(TokenNames.EXTENDS); }
 "return"		{ return symbol(TokenNames.RETURN); }
@@ -129,7 +129,7 @@ Comment2	= "/*" {ValidCommentChar}* "*/"
 "="			{ return symbol(TokenNames.EQ); }
 "<"			{ return symbol(TokenNames.LT); }
 ">"			{ return symbol(TokenNames.GT); }
-{INT}			{ return symbol(TokenNames.TYPE_INT, new Integer(yytext()));}
+{INT}			{ return symbol(TokenNames.INT, new Integer(yytext()));}
 {STRING}				{ return symbol(TokenNames.STRING,     new String( yytext()));}   
 {ID}				{ return symbol(TokenNames.ID,     new String( yytext()));} 
 {WhiteSpace}		{ /* just skip what was found, do nothing */ }
@@ -141,6 +141,6 @@ Comment2	= "/*" {ValidCommentChar}* "*/"
 	if (value > 32767) {
 			return symbol(TokenNames.ERROR);
 	}
-	return symbol(TokenNames.TYPE_INT, value);
+	return symbol(TokenNames.INT, value);
 }
 }
