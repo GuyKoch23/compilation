@@ -1,4 +1,5 @@
-   
+
+     
 import java.io.*;
 import java.io.PrintWriter;
 
@@ -45,7 +46,7 @@ public class Main
 				/************************/
 				/* [6] Print to console */
 				/************************/
-				System.out.print(s.sym);
+				System.out.print(TokenNames.tokenMap[s.sym]);
 				System.out.print("[");
 				System.out.print(l.getLine());
 				System.out.print(",");
@@ -85,5 +86,3 @@ public class Main
 		}
 	}
 }
-
-
