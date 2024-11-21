@@ -45,6 +45,7 @@ public class Main
 				/************************/
 				/* [6] Print to console */
 				/************************/
+				System.out.print(s.sym);
 				System.out.print("[");
 				System.out.print(l.getLine());
 				System.out.print(",");
