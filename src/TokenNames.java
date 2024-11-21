@@ -1,4 +1,5 @@
 import java.util.Map;
+import static java.util.Map.entry;    
 
 public interface TokenNames {
   /* terminals */
@@ -36,40 +37,39 @@ public interface TokenNames {
   public static final int STRING = 31;
   public static final int ERROR = 32; // TODO: remove this token maybe
 
-  public static final Map<Integer, String> tokenMap = Map.of(
-    EOF, "EOF",
-    PLUS, "PLUS",
-    MINUS, "MINUS",
-    TIMES, "TIMES",
-    DIVIDE, "DIVIDE",
-    LPAREN, "LPAREN",
-    RPAREN, "RPAREN",
-    NUMBER, "NUMBER",
-    ID, "ID",
-    CLASS, "CLASS",
-    NIL, "NIL",
-    ARRAY, "ARRAY",
-    WHILE, "WHILE",
-    TYPE_INT, "TYPE_INT",
-    TYPE_VOID, "TYPE_VOID",
-    EXTENDS, "EXTENDS",
-    RETURN, "RETURN",
-    NEW, "NEW",
-    IF, "IF",
-    TYPE_STRING, "TYPE_STRING",
-    LBRACK, "LBRACK",
-    RBRACK, "RBRACK",
-    LBRACE, "LBRACE",
-    RBRACE, "RBRACE",
-    COMMA, "COMMA",
-    DOT, "DOT",
-    SEMICOLON, "SEMICOLON",
-    ASSIGN, "ASSIGN",
-    EQ, "EQ",
-    LT, "LT",
-    GT, "GT",
-    STRING, "STRING",
-    ERROR, "ERROR"
-  );
-  
+  public static final Map<String, String> tokenMap = Map.ofEntries(
+    entry(Integer.toString(EOF), "EOF"),
+    entry(Integer.toString(PLUS), "PLUS"),
+    entry(Integer.toString(MINUS), "MINUS"),
+    entry(Integer.toString(TIMES), "TIMES"),
+    entry(Integer.toString(DIVIDE), "DIVIDE"),
+    entry(Integer.toString(LPAREN), "LPAREN"),
+    entry(Integer.toString(RPAREN), "RPAREN"),
+    entry(Integer.toString(NUMBER), "NUMBER"),
+    entry(Integer.toString(ID), "ID"),
+    entry(Integer.toString(CLASS), "CLASS"),
+    entry(Integer.toString(NIL), "NIL"),
+    entry(Integer.toString(ARRAY), "ARRAY"),
+    entry(Integer.toString(WHILE), "WHILE"),
+    entry(Integer.toString(TYPE_INT), "TYPE_INT"),
+    entry(Integer.toString(TYPE_VOID), "TYPE_VOID"),
+    entry(Integer.toString(EXTENDS), "EXTENDS"),
+    entry(Integer.toString(RETURN), "RETURN"),
+    entry(Integer.toString(NEW), "NEW"),
+    entry(Integer.toString(IF), "IF"),
+    entry(Integer.toString(TYPE_STRING), "TYPE_STRING"),
+    entry(Integer.toString(LBRACK), "LBRACK"),
+    entry(Integer.toString(RBRACK), "RBRACK"),
+    entry(Integer.toString(LBRACE), "LBRACE"),
+    entry(Integer.toString(RBRACE), "RBRACE"),
+    entry(Integer.toString(COMMA), "COMMA"),
+    entry(Integer.toString(DOT), "DOT"),
+    entry(Integer.toString(SEMICOLON), "SEMICOLON"),
+    entry(Integer.toString(ASSIGN), "ASSIGN"),
+    entry(Integer.toString(EQ), "EQ"),
+    entry(Integer.toString(LT), "LT"),
+    entry(Integer.toString(GT), "GT"),
+    entry(Integer.toString(STRING), "STRING"),
+    entry(Integer.toString(ERROR), "ERROR")
+);
 }
