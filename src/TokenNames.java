@@ -38,38 +38,38 @@ public interface TokenNames {
   public static final int ERROR = 32; // TODO: remove this token maybe
 
   public static final HashMap<Integer, String> tokenMap = new HashMap<>();
-    tokenMap.put(EOF, "EOF");
-    entry(Integer.toString(PLUS), "PLUS"),
-    entry(Integer.toString(MINUS), "MINUS"),
-    entry(Integer.toString(TIMES), "TIMES"),
-    entry(Integer.toString(DIVIDE), "DIVIDE"),
-    entry(Integer.toString(LPAREN), "LPAREN"),
-    entry(Integer.toString(RPAREN), "RPAREN"),
-    entry(Integer.toString(NUMBER), "NUMBER"),
-    entry(Integer.toString(ID), "ID"),
-    entry(Integer.toString(CLASS), "CLASS"),
-    entry(Integer.toString(NIL), "NIL"),
-    entry(Integer.toString(ARRAY), "ARRAY"),
-    entry(Integer.toString(WHILE), "WHILE"),
-    entry(Integer.toString(TYPE_INT), "TYPE_INT"),
-    entry(Integer.toString(TYPE_VOID), "TYPE_VOID"),
-    entry(Integer.toString(EXTENDS), "EXTENDS"),
-    entry(Integer.toString(RETURN), "RETURN"),
-    entry(Integer.toString(NEW), "NEW"),
-    entry(Integer.toString(IF), "IF"),
-    entry(Integer.toString(TYPE_STRING), "TYPE_STRING"),
-    entry(Integer.toString(LBRACK), "LBRACK"),
-    entry(Integer.toString(RBRACK), "RBRACK"),
-    entry(Integer.toString(LBRACE), "LBRACE"),
-    entry(Integer.toString(RBRACE), "RBRACE"),
-    entry(Integer.toString(COMMA), "COMMA"),
-    entry(Integer.toString(DOT), "DOT"),
-    entry(Integer.toString(SEMICOLON), "SEMICOLON"),
-    entry(Integer.toString(ASSIGN), "ASSIGN"),
-    entry(Integer.toString(EQ), "EQ"),
-    entry(Integer.toString(LT), "LT"),
-    entry(Integer.toString(GT), "GT"),
-    entry(Integer.toString(STRING), "STRING"),
-    entry(Integer.toString(ERROR), "ERROR")
-);
+  tokenMap.put(EOF, "EOF");
+  tokenMap.put(PLUS, "PLUS");
+  tokenMap.put(MINUS, "MINUS");
+  tokenMap.put(TIMES, "TIMES");
+  tokenMap.put(DIVIDE, "DIVIDE");
+  tokenMap.put(LPAREN, "LPAREN");
+  tokenMap.put(RPAREN, "RPAREN");
+  tokenMap.put(NUMBER, "NUMBER");
+  tokenMap.put(ID, "ID");
+  tokenMap.put(CLASS, "CLASS");
+  tokenMap.put(NIL, "NIL");
+  tokenMap.put(ARRAY, "ARRAY");
+  tokenMap.put(WHILE, "WHILE");
+  tokenMap.put(TYPE_INT, "TYPE_INT");
+  tokenMap.put(TYPE_VOID, "TYPE_VOID");
+  tokenMap.put(EXTENDS, "EXTENDS");
+  tokenMap.put(RETURN, "RETURN");
+  tokenMap.put(NEW, "NEW");
+  tokenMap.put(IF, "IF");
+  tokenMap.put(TYPE_STRING, "TYPE_STRING");
+  tokenMap.put(LBRACK, "LBRACK");
+  tokenMap.put(RBRACK, "RBRACK");
+  tokenMap.put(LBRACE, "LBRACE");
+  tokenMap.put(RBRACE, "RBRACE");
+  tokenMap.put(COMMA, "COMMA");
+  tokenMap.put(DOT, "DOT");
+  tokenMap.put(SEMICOLON, "SEMICOLON");
+  tokenMap.put(ASSIGN, "ASSIGN");
+  tokenMap.put(EQ, "EQ");
+  tokenMap.put(LT, "LT");
+  tokenMap.put(GT, "GT");
+  tokenMap.put(STRING, "STRING");
+  tokenMap.put(ERROR, "ERROR");
+
 }
