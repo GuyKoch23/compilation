@@ -1,37 +1,43 @@
 public interface TokenNames {
   /* terminals */
-  public static final String EOF = "EOF";
-  public static final String PLUS = "PLUS";
-  public static final String MINUS = "MINUS";
-  public static final String TIMES = "TIMES";
-  public static final String DIVIDE = "DIVIDE";
-  public static final String LPAREN = "LPAREN";
-  public static final String RPAREN = "RPAREN";
-  public static final String NUMBER = "NUMBER";
-  public static final String ID = "ID";
-  public static final String CLASS = "CLASS";
-  public static final String NIL = "NIL";
-  public static final String ARRAY = "ARRAY";
-  public static final String WHILE = "WHILE";
-  public static final String TYPE_INT = "TYPE_INT";
-  public static final String TYPE_VOID = "TYPE_VOID";
-  public static final String EXTENDS = "EXTENDS";
-  public static final String RETURN = "RETURN";
-  public static final String NEW = "NEW";
-  public static final String IF = "IF";
-  public static final String TYPE_STRING = "TYPE_STRING";
-  public static final String LBRACK = "LBRACK";
-  public static final String RBRACK = "RBRACK";
-  public static final String LBRACE = "LBRACE";
-  public static final String RBRACE = "RBRACE";
-  public static final String COMMA = "COMMA";
-  public static final String DOT = "DOT";
-  public static final String SEMICOLON = "SEMICOLON";
-  public static final String ASSIGN = "ASSIGN";
-  public static final String EQ = "EQ";
-  public static final String LT = "LT";
-  public static final String GT = "GT";
-  public static final String STRING = "STRING";
-  public static final String ERROR = "ERROR"; // TODO: remove this token maybe
+  public static final int EOF = 0;
+  public static final int PLUS = 1;
+  public static final int MINUS = 2;
+  public static final int TIMES = 3;
+  public static final int DIVIDE = 4;
+  public static final int LPAREN = 5;
+  public static final int RPAREN = 6;
+  public static final int NUMBER = 7;
+  public static final int ID = 8;
+  public static final int CLASS = 9;
+  public static final int NIL = 10;
+  public static final int ARRAY = 11;
+  public static final int WHILE = 12;
+  public static final int TYPE_INT = 13;
+  public static final int TYPE_VOID = 14;
+  public static final int EXTENDS = 15;
+  public static final int RETURN = 16;
+  public static final int NEW = 17;
+  public static final int IF = 18;
+  public static final int TYPE_STRING = 19;
+  public static final int LBRACK = 20;
+  public static final int RBRACK = 21;
+  public static final int LBRACE = 22;
+  public static final int RBRACE = 23;
+  public static final int COMMA = 24;
+  public static final int DOT = 25;
+  public static final int SEMICOLON = 26;
+  public static final int ASSIGN = 27;
+  public static final int EQ = 28;
+  public static final int LT = 29;
+  public static final int GT = 30;
+  public static final int STRING = 31;
+  public static final int ERROR = 32; // TODO: remove this token maybe
+
+  String[] tokens = {
+    "EOF", "PLUS", "MINUS", "TIMES", "DIVIDE", "LPAREN", "RPAREN", "NUMBER", "ID", "CLASS", "NIL", "ARRAY",
+    "WHILE", "TYPE_INT", "TYPE_VOID", "EXTENDS", "RETURN", "NEW", "IF", "TYPE_STRING", "LBRACK", "RBRACK",
+    "LBRACE", "RBRACE", "COMMA", "DOT", "SEMICOLON", "ASSIGN", "EQ", "LT", "GT", "STRING", "ERROR"
+  };
 }
 
