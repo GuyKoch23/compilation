@@ -46,7 +46,7 @@ public class Main
 				/************************/
 				/* [6] Print to console */
 				/************************/
-				System.out.print(TokenNames.tokenMap[s.sym]);
+				System.out.print(TokenNames.tokenMap.get(s.sym));
 				System.out.print("[");
 				System.out.print(l.getLine());
 				System.out.print(",");
