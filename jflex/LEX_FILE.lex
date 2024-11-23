@@ -65,8 +65,6 @@ import java_cup.runtime.*;
 	/* Enable token position extraction from main */
 	/**********************************************/
 	public int getTokenStartPosition() { return yycolumn + 1; } 
-
-	/*public String getTokenName()*/
 %}
 
 /***********************/
@@ -103,7 +101,10 @@ STRING			= \"[a-zA-Z]*\"
 <YYINITIAL> {
 {Comment1}		{ /* just skip what was found, do nothing */ }
 {Comment2}		{ /* just skip what was found, do nothing */ }
-{Comment2_illegal}		{ return symbol(TokenNames.ERROR); }
+{Comment2_illegal}		{ 
+	System.out.println("Comment2 illegal");
+	return symbol(TokenNames.ERROR); 
+	}
 "class"		{ return symbol(TokenNames.CLASS); }
 "nil"			{ return symbol(TokenNames.NIL); }
 "array"		{ return symbol(TokenNames.ARRAY); }
