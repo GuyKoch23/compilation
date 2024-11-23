@@ -26,7 +26,7 @@ public class Main
 			/* [2] Initialize a file writer */
 			/********************************/
 			file_writer = new PrintWriter(outputFilename);
-			
+			file_writer = new PrintWriter(outputFilename);
 			/******************************/
 			/* [3] Initialize a new lexer */
 			/******************************/
