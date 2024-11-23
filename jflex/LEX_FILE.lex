@@ -106,12 +106,13 @@ Comment2	= "/*" {ValidCommentChar}* "*/"
 "nil"			{ return symbol(TokenNames.NIL); }
 "array"		{ return symbol(TokenNames.ARRAY); }
 "while"		{ return symbol(TokenNames.WHILE); }
-/*"int"			{ return symbol(TokenNames.INT); }*/
+"int"			{ return symbol(TokenNames.TYPE_INT); }
 "void"		{ return symbol(TokenNames.TYPE_VOID); }
 "extends"		{ return symbol(TokenNames.EXTENDS); }
 "return"		{ return symbol(TokenNames.RETURN); }
 "new"			{ return symbol(TokenNames.NEW); }
 "if"			{ return symbol(TokenNames.IF); }
+"string"		{ return symbol(TokenNames.TYPE_STRING); }
 "("			{ return symbol(TokenNames.LPAREN); }
 ")"			{ return symbol(TokenNames.RPAREN); }
 "["			{ return symbol(TokenNames.LBRACK); }
@@ -129,13 +130,11 @@ Comment2	= "/*" {ValidCommentChar}* "*/"
 "="			{ return symbol(TokenNames.EQ); }
 "<"			{ return symbol(TokenNames.LT); }
 ">"			{ return symbol(TokenNames.GT); }
-{INT}			{ return symbol(TokenNames.INT, new Integer(yytext()));}
 {STRING}				{ return symbol(TokenNames.STRING,     new String( yytext()));}   
 {ID}				{ return symbol(TokenNames.ID,     new String( yytext()));} 
 {WhiteSpace}		{ /* just skip what was found, do nothing */ }
 <<EOF>>				{ return symbol(TokenNames.EOF);}
 
-/* Integer literals */
 {INT}		{ 
 	int value = Integer.parseInt(yytext());
 	if (value > 32767) {

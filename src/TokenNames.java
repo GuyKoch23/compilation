@@ -31,10 +31,12 @@ public interface TokenNames {
   public static final int GT = 29;
   public static final int STRING = 30;
   public static final int ERROR = 31; // TODO: remove this token maybe
+  public static final int TYPE_INT = 32;
+  public static final int TYPE_STRING = 33;
 
   String[] tokens = {
     "EOF", "PLUS", "MINUS", "TIMES", "DIVIDE", "LPAREN", "RPAREN", "NUMBER", "ID", "CLASS", "NIL", "ARRAY",
     "WHILE", "INT", "TYPE_VOID", "EXTENDS", "RETURN", "NEW", "IF", "LBRACK", "RBRACK", "LBRACE", "RBRACE",
-    "COMMA", "DOT", "SEMICOLON", "ASSIGN", "EQ", "LT", "GT", "STRING", "ERROR"
+    "COMMA", "DOT", "SEMICOLON", "ASSIGN", "EQ", "LT", "GT", "STRING", "ERROR", "TYPE_INT", "TYPE_STRING"
   };
 }
