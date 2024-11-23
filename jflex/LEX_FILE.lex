@@ -102,6 +102,8 @@ ValidCommentChar = [a-zA-Z0-9 \t\r\n\(\)\[\]\{\}\?\!\+\-\*\/\.\;]
 /**************************************************************/
 
 <YYINITIAL> {
+{Comment1}		{ /* just skip what was found, do nothing */ }
+{Comment2}		{ /* just skip what was found, do nothing */ }
 "class"		{ return symbol(TokenNames.CLASS); }
 "nil"			{ return symbol(TokenNames.NIL); }
 "array"		{ return symbol(TokenNames.ARRAY); }
