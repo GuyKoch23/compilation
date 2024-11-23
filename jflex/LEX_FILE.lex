@@ -73,8 +73,8 @@ import java_cup.runtime.*;
 /* MACRO DECALARATIONS */
 /***********************/
 /* Comments */
-Comment1	= "//" {ValidCommentChar}* {LineTerminator}
-Comment2	= "/*" {ValidCommentChar}* "*/"
+Comment1	= "//" {[a-zA-Z0-9 \t\r\(\)\[\]\{\}\?\!\+\-\*\/\.\;]}* {LineTerminator}
+Comment2	= "/*" {[a-zA-Z0-9 \t\r\n\(\)\[\]\{\}\?\!\+\-\*\/\.\;]}* "*/"
 Letter		= [a-zA-Z]
 Digit		= [0-9]
 ID	= {Letter}({Letter}|{Digit})*
@@ -82,8 +82,6 @@ INT			= 0 | [1-9][0-9]*
 LineTerminator	= \r|\n|\r\n
 WhiteSpace		= {LineTerminator} | [ \t]
 STRING			= \"[a-zA-Z]*\"
-
-ValidCommentChar = [a-zA-Z0-9 \t\r\n\(\)\[\]\{\}\?\!\+\-\*\/\.\;]
 
 /******************************/
 /* DOLAR DOLAR - DON'T TOUCH! */
