@@ -30,7 +30,7 @@ JFlex_FILE     = ${JFlex_DIR}/LEX_FILE.lex
 ########################
 # DEFINITIONS :: LEXER #
 ########################
-INPUT    = ${INPUT_DIR}/wrong_indentifier.txt
+INPUT    = ${INPUT_DIR}/int_class.txt
 OUTPUT   = ${OUTPUT_DIR}/OutputTokens.txt
 
 all:
