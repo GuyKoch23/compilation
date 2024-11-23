@@ -1,0 +1,13 @@
+// This is a comment
+class MyClass extends SuperClass {
+    int myVar := 10;
+    string 1x := "Hello";
+    array[5];
+    if (myVar < 20) {
+        return new MyClass();
+    }
+    while (myVar > 0) {
+        myVar := myVar - 1;
+    }
+    nil;
+}
