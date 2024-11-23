@@ -91,13 +91,14 @@ public class Main {
             // Handle errors, but make sure file_writer is initialized first
             if (file_writer != null) {
                 file_writer.close();  // Close file_writer if it was opened
-            }
+								System.out.println("ENTERED IF");
+							}
             // Re-initialize file_writer and write error message
             try {
                 file_writer = new PrintWriter(outputFilename);
                 file_writer.print("ERROR");
             } catch (FileNotFoundException fnfe) {
-                System.err.println("Failed to write error output: " + fnfe.getMessage());
+                System.out.println("Failed to write error output: " + fnfe.getMessage());
             }
         } finally {
             // Ensure file_writer is closed in the finally block
