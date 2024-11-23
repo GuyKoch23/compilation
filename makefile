@@ -5,7 +5,7 @@ BASEDIR           = /a/home/cc/students/cs/hilabarkan/compilation
 JFlex_DIR         = ${BASEDIR}/jflex
 SRC_DIR           = ${BASEDIR}/src
 BIN_DIR           = ${BASEDIR}/bin
-INPUT_DIR         = ${BASEDIR}/TEST_01_Print_Primes
+INPUT_DIR         = ${BASEDIR}/input
 OUTPUT_DIR        = ${BASEDIR}/output
 EXTERNAL_JARS_DIR = ${BASEDIR}/external_jars
 MANIFEST_DIR      = ${BASEDIR}/manifest
@@ -30,7 +30,7 @@ JFlex_FILE     = ${JFlex_DIR}/LEX_FILE.lex
 ########################
 # DEFINITIONS :: LEXER #
 ########################
-INPUT    = ${INPUT_DIR}/Input.txt
+INPUT    = ${INPUT_DIR}/TEST_01_Print_Primes.txt
 OUTPUT   = ${OUTPUT_DIR}/OutputTokens.txt
 
 all:
