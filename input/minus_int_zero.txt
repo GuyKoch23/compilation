@@ -5,7 +5,7 @@ class MyClass extends SuperClass {
     array[5];
     if (myVar < 20) {
         return new MyClass();
-    /* This is another comment
+    /* This is another comment */
     
     }
     while (myVar > -0) {
