@@ -99,6 +99,7 @@ public class Main
 			     
 		catch (Exception e)
 		{
+			System.out.println(outputFilename);
 			file_writer = new PrintWriter(outputFilename);
 			file_writer.print("ERROR");
 		}
