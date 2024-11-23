@@ -74,7 +74,8 @@ import java_cup.runtime.*;
 /***********************/
 /* Comments */
 Comment1	= "//" [a-zA-Z0-9 \t\r\(\)\[\]\{\}\?\!\+\-\*\/\.\;]* {LineTerminator}
-Comment2	= "/*" [a-zA-Z0-9 \t\r\n\(\)\[\]\{\}\?\!\+\-\*\/\.\;]* "*/"
+Comment2_illegal	= "/*" [a-zA-Z0-9 \t\r\n\(\)\[\]\{\}\?\!\+\-\*\/\.\;]*
+Comment2	= {Comment2_illegal} "*/"
 Letter		= [a-zA-Z]
 Digit		= [0-9]
 ID	= {Letter}({Letter}|{Digit})*
@@ -102,6 +103,7 @@ STRING			= \"[a-zA-Z]*\"
 <YYINITIAL> {
 {Comment1}		{ /* just skip what was found, do nothing */ }
 {Comment2}		{ /* just skip what was found, do nothing */ }
+{Comment2_illegal}		{ return symbol(TokenNames.ERROR); }
 "class"		{ return symbol(TokenNames.CLASS); }
 "nil"			{ return symbol(TokenNames.NIL); }
 "array"		{ return symbol(TokenNames.ARRAY); }
@@ -144,7 +146,7 @@ STRING			= \"[a-zA-Z]*\"
 
     int value = Integer.parseInt(text);
 
-    if (value > 32767) {
+    if (value > 32767 || value < 0) {
         return symbol(TokenNames.ERROR);
     }
 
