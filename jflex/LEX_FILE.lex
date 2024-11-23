@@ -78,7 +78,7 @@ Comment2	= "/*" [a-zA-Z0-9 \t\r\n\(\)\[\]\{\}\?\!\+\-\*\/\.\;]* "*/"
 Letter		= [a-zA-Z]
 Digit		= [0-9]
 ID	= {Letter}({Letter}|{Digit})*
-INT			= 0 | [1-9][0-9]*
+INT			= [0-9]+
 LineTerminator	= \r|\n|\r\n
 WhiteSpace		= {LineTerminator} | [ \t]
 STRING			= \"[a-zA-Z]*\"
@@ -136,10 +136,19 @@ STRING			= \"[a-zA-Z]*\"
 <<EOF>>				{ return symbol(TokenNames.EOF);}
 
 {INT}		{ 
-	int value = Integer.parseInt(yytext());
-	if (value > 32767) {
-			return symbol(TokenNames.ERROR);
-	}
-	return symbol(TokenNames.INT, value);
+    String text = yytext();
+
+    // Check for leading zeros (allow "0" but not "0123")
+    if (text.length() > 1 && text.startsWith("0")) {
+        return symbol(TokenNames.ERROR);
+    }
+
+    int value = Integer.parseInt(text);
+
+    if (value > 32767) {
+        return symbol(TokenNames.ERROR);
+    }
+
+    return symbol(TokenNames.INT, value);
 }
 }
