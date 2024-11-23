@@ -42,6 +42,10 @@ public class Main
 			/********************************/
 			while (s.sym != TokenNames.EOF)
 			{
+				if (s.sym == TokenNames.ERROR) {
+					System.out.print("ERROR");
+					throw new Exception("ERROR");
+				}
 				/************************/
 				/* [6] Print to console */
 				/************************/
@@ -95,9 +99,8 @@ public class Main
 			     
 		catch (Exception e)
 		{
-			//file_writer = new PrintWriter(outputFilename);
-			//file_writer.print("ERROR");
-			e.printStackTrace();
+			file_writer = new PrintWriter(outputFilename);
+			file_writer.print("ERROR");
 		}
 	}
 }
