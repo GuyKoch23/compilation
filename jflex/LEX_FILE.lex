@@ -134,6 +134,8 @@ STRING			= \"[a-zA-Z]*\"
 {ID}				{ return symbol(TokenNames.ID,     new String( yytext()));} 
 {WhiteSpace}		{ /* just skip what was found, do nothing */ }
 <<EOF>>				{ return symbol(TokenNames.EOF);}
+.			{ return symbol(TokenNames.ERROR); }
+
 
 {INT}		{ 
     String text = yytext();
