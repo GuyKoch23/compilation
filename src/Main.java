@@ -14,7 +14,8 @@ public class Main
 		PrintWriter file_writer;
 		String inputFilename = argv[0];
 		String outputFilename = argv[1];
-		
+		int flag = 0;
+
 		try
 		{
 			/********************************/
@@ -26,7 +27,7 @@ public class Main
 			/* [2] Initialize a file writer */
 			/********************************/
 			file_writer = new PrintWriter(outputFilename);
-			file_writer = new PrintWriter(outputFilename);
+			flag = 1;
 			/******************************/
 			/* [3] Initialize a new lexer */
 			/******************************/
@@ -95,13 +96,16 @@ public class Main
 			/* [10] Close output file */
 			/**************************/
 			file_writer.close();
+			flag = 0;
     	}
-			     
 		catch (Exception e)
 		{
-			System.out.println(outputFilename);
-			// file_writer = new PrintWriter(outputFilename);
-			// file_writer.print("ERROR");
+			if (flag == 1) {
+				file_writer.close();
+			}
+			file_writer = new PrintWriter(outputFilename);
+			file_writer.print("ERROR");
+			file_writer.close();
 		}
 	}
 }
