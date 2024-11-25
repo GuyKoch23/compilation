@@ -1,1 +1,1 @@
-// banananananan \n max = a * b
+// banananananan max = a * b
