@@ -73,7 +73,8 @@ import java_cup.runtime.*;
 /* Comments */
 Comment1	= "//" [a-zA-Z0-9 \t\r\(\)\[\]\{\}\?\!\+\-\*\/\.\;]* {LineTerminator}
 Comment2_illegal	= "/*" [a-zA-Z0-9 \t\r\n\(\)\[\]\{\}\?\!\+\-\*\/\.\;]*
-Comment2	= {Comment2_illegal} "*/"
+Comment2	= "/*" ([a-zA-Z0-9 \t\r\n\(\)\[\]\{\}\?\!\+\-\*\/\.\;]*(?<!\*\/)) "*/"
+commentChars = [a-zA-Z0-9 \(\)\[\]\{\}\?\!\+\-\.\;\:]
 Letter		= [a-zA-Z]
 Digit		= [0-9]
 ID	= {Letter}({Letter}|{Digit})*
@@ -81,6 +82,7 @@ INT			= [0-9]+
 LineTerminator	= \r|\n|\r\n
 WhiteSpace		= {LineTerminator} | [ \t]
 STRING			= \"[a-zA-Z]*\"
+comment2_2 = \/\*(({commentChars}|\/)* | ({WhiteSpace})* | (\*)+({commentChars} | {WhiteSpace}))*(\*)+\/
 
 /******************************/
 /* DOLAR DOLAR - DON'T TOUCH! */
