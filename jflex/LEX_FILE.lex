@@ -102,7 +102,7 @@ comment2_2 = \/\*(({commentChars}|\/)*|({WhiteSpace})* | (\*)+({commentChars} | 
 <YYINITIAL> {
 {Comment1}		{ /* just skip what was found, do nothing */ }
 {comment2_2}		{ /* just skip what was found, do nothing */ }
-{Comment2_illegal}		{ return symbol(TokenNames.ERROR); }
+/*{Comment2_illegal}		{ return symbol(TokenNames.ERROR); }*/
 "class"		{ return symbol(TokenNames.CLASS); }
 "nil"			{ return symbol(TokenNames.NIL); }
 "array"		{ return symbol(TokenNames.ARRAY); }
