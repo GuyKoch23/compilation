@@ -72,8 +72,8 @@ import java_cup.runtime.*;
 /***********************/
 /* Comments */
 Comment1	= \/\/[a-zA-Z0-9 \t\r\(\)\[\]\{\}\?\!\+\-\*\/\.\;]* {LineTerminator}?
-Comment2_illegal	= \/\*(({commentChars}|\/)*|({WhiteSpace})* | (\*)+({commentChars} | {WhiteSpace}))*
-commentChars = [a-zA-Z0-9 \(\)\[\]\{\}\?\!\+\-\.\;\:]
+Comment2_illegal	= \/\*(({commentCharacters}|\/)*|({WhiteSpace})* | (\*)+({commentCharacters} | {WhiteSpace}))*
+commentCharacters = [a-zA-Z0-9 \(\)\[\]\{\}\?\!\+\-\.\;]
 Letter		= [a-zA-Z]
 Digit		= [0-9]
 ID	= {Letter}({Letter}|{Digit})*
@@ -81,7 +81,7 @@ INT			= [0-9]+
 LineTerminator	= \r|\n|\r\n
 WhiteSpace		= {LineTerminator} | [ \t]
 STRING			= \"[a-zA-Z]*\"
-comment2_2 = \/\*(({commentChars}|\/)*|({WhiteSpace})* | (\*)+({commentChars} | {WhiteSpace}))*(\*)+\/
+Comment2 = \/\*(({commentCharacters}|\/)*|({WhiteSpace})* | (\*)+({commentCharacters} | {WhiteSpace}))*(\*)+\/
 
 /******************************/
 /* DOLAR DOLAR - DON'T TOUCH! */
@@ -101,7 +101,7 @@ comment2_2 = \/\*(({commentChars}|\/)*|({WhiteSpace})* | (\*)+({commentChars} | 
 
 <YYINITIAL> {
 {Comment1}		{ /* just skip what was found, do nothing */ }
-{comment2_2}		{ /* just skip what was found, do nothing */ }
+{Comment2}		{ /* just skip what was found, do nothing */ }
 {Comment2_illegal}		{ return symbol(TokenNames.ERROR); }
 "class"		{ return symbol(TokenNames.CLASS); }
 "nil"			{ return symbol(TokenNames.NIL); }
