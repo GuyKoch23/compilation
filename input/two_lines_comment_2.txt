@@ -1,0 +1,18 @@
+// This is a comment
+class MyClass extends SuperClass {
+    int myVar := 10;
+    string myString := "Hello";
+    array[5];
+    if (myVar < 20) {
+        return new MyClass();
+    /* This is another comment
+    This is another comment
+    }
+    This is another comment */
+    
+    }
+    while (myVar > -0) {
+        myVar := myVar - 1;
+    }
+    nil;
+}
