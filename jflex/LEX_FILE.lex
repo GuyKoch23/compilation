@@ -81,7 +81,7 @@ INT			= [0-9]+
 LineTerminator	= \r|\n|\r\n
 WhiteSpace		= {LineTerminator} | [ \t]
 STRING			= \"[a-zA-Z]*\"
-comment2_2 = \/\*(({commentChars}|\/)*|({WhiteSpace})* | (\*)+({commentChars} | {WhiteSpace}))*(\*)+\/
+comment2_2 = \/\*(({commentChars}|\/)*|({WhiteSpace})* | (\*)+({commentChars} | {WhiteSpace}))*
 
 /******************************/
 /* DOLAR DOLAR - DON'T TOUCH! */
