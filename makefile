@@ -1,7 +1,7 @@
 ###############
 # DIRECTORIES #
 ###############
-BASEDIR           = /a/home/cc/students/cs/hilabarkan/compilation
+BASEDIR           = $(shell pwd)
 JFlex_DIR         = ${BASEDIR}/jflex
 SRC_DIR           = ${BASEDIR}/src
 BIN_DIR           = ${BASEDIR}/bin
