@@ -36,25 +36,8 @@ public class Main {
             /********************************/
             while (s.sym != TokenNames.EOF) {
                 if (s.sym == TokenNames.ERROR) {
-                    System.out.print("ERROR");
                     throw new Exception("ERROR");
                 }
-                /************************/
-                /* [6] Print to console */
-                /************************/
-                System.out.print(TokenNames.tokens[s.sym]);
-                if (s.sym == TokenNames.INT || s.sym == TokenNames.ID || s.sym == TokenNames.STRING) {
-                    System.out.print("(");
-                    System.out.print(s.value);
-                    System.out.print(")");
-                }
-                System.out.print("[");
-                System.out.print(l.getLine());
-                System.out.print(",");
-                System.out.print(l.getTokenStartPosition());
-                System.out.print("]");
-                System.out.print("\n");
-
                 /*********************/
                 /* [7] Print to file */
                 /*********************/
