@@ -30,7 +30,7 @@ JFlex_FILE     = ${JFlex_DIR}/LEX_FILE.lex
 ########################
 # DEFINITIONS :: LEXER #
 ########################
-INPUT    = ${INPUT_DIR}/TEST_02_Merge_Lists.txt
+INPUT    = ${INPUT_DIR}/Input.txt
 OUTPUT   = ${OUTPUT_DIR}/OutputTokens.txt
 
 all:
