@@ -30,7 +30,7 @@ JFlex_FILE     = ${JFlex_DIR}/LEX_FILE.lex
 ########################
 # DEFINITIONS :: LEXER #
 ########################
-INPUT    = ${INPUT_DIR}/two_lines_comment_2.txt
+INPUT    = ${INPUT_DIR}/unclosed_string.txt
 OUTPUT   = ${OUTPUT_DIR}/OutputTokens.txt
 
 all:
