@@ -1,121 +1,128 @@
-/*************/
-/* IMPORT(S) */
-/*************/
-import java_cup.runtime.*;
-import AST.*;
+import java_cup.runtime.Symbol;
 
-parser code 
-{:
-	public Lexer lexer;
+parser code {:
+    // Error handling: Report errors with line number
+    @Override
+    public void syntax_error(Symbol s) {
+        System.err.println("ERROR(" + s.left + ")");
+        System.exit(0);
+    }
 
-	public Parser(Lexer lexer)
-	{
-		super(lexer);
-		this.lexer = lexer;
-	}
-	public void report_error(String message, Object info)
-	{
-		System.out.print("ERROR >> ");		
-		System.out.print("[");
-		System.out.print(lexer.getLine());
-		System.out.print(":");
-		System.out.print(lexer.getCharPos());
-		System.out.print("] ");		
-		System.exit(0);
-	}
-:}
-
-/************************/
-/* CUSTOMIZE CUP PARSER */
-/************************/
-scan with
-{:
-	Symbol s;
-	s = lexer.next_token();
-	//System.out.print(s.sym);
-	System.out.print("[");
-	System.out.print(lexer.getLine());
-	System.out.print(":");
-	System.out.print(lexer.getCharPos());
-	System.out.print("] ");
-	System.out.print(TokenNames.terminalNames[s.sym]);
-	if (s.value != null)
-	{
-		System.out.print("( ");
-		System.out.print(s.value);
-		System.out.print(" )");
-	}
-	System.out.print("\n");
-	return s; 
+    @Override
+    public void unrecovered_syntax_error(Symbol s) {
+        syntax_error(s);
+    }
 :};
 
-/*************/
-/* TERMINALS */
-/*************/
-terminal IF;
-terminal EQ;
-terminal DOT;
-terminal PLUS;
-terminal MINUS;
-terminal TIMES;
-terminal WHILE;
-terminal DIVIDE;
-terminal LPAREN;
-terminal RPAREN;
-terminal LBRACK;
-terminal RBRACK;
-terminal LBRACE;
-terminal RBRACE;
-terminal SEMICOLON;
-terminal ASSIGN;
+terminal
+    // Keywords
+    CLASS, EXTENDS, NEW, RETURN, IF, WHILE, ARRAY,
+    TYPE_INT, TYPE_STRING, TYPE_VOID,
 
-/*************/
-/* TERMINALS */
-/*************/
-terminal Integer INT;
-terminal String ID;
+    // Symbols
+    ASSIGN, EQ, PLUS, MINUS, TIMES, DIVIDE, LT, GT, LPAREN, RPAREN,
+    LBRACE, RBRACE, LBRACK, RBRACK, DOT, COMMA, SEMICOLON,
 
-/*****************/
-/* NON TERMINALS */
-/*****************/
-non terminal AST_EXP exp;
-non terminal AST_VAR var;
-non terminal AST_STMT stmt;
-non terminal AST_STMT_LIST stmtList;
+    // Literals
+    ID, INT, STRING, NIL;
 
-/***********************/
-/* OPERATOR PRECEDENCE */
-/***********************/
-precedence left PLUS;
-precedence left MINUS;
-precedence left TIMES;
-precedence left DIVIDE;
+non terminal
+    program, dec, type, varDec, funcDec, classDec, arrayTypedef,
+    exp, var, stmt, newExp, cField;
 
-/************************/
-/* START WITH: stmtList */
-/************************/
-start with stmtList;
+precedence left EQ;
+precedence left LT, GT;
+precedence left PLUS, MINUS;
+precedence left TIMES, DIVIDE;
 
-/********************/
-/* DERIVATION RULES */
-/********************/
+start with program;
 
-stmtList	::=		stmt:s	stmtList:l		{: RESULT = new AST_STMT_LIST(s,l);    :}
-					| stmt:s				{: RESULT = new AST_STMT_LIST(s,null); :}
-					;
+program ::= dec+ {: 
+    RESULT = new AST_STMT_LIST($1);
+:};
 
-var			::=		ID:name								{: RESULT = new AST_VAR_SIMPLE(name);       :}
-					| var:v DOT ID:fieldName			{: RESULT = new AST_VAR_FIELD(v,fieldName); :} 
-					| var:v LBRACK exp:e RBRACK			{: RESULT = new AST_VAR_SUBSCRIPT(v,e);     :} 
-					;
-					
-stmt		::=		var:v ASSIGN exp:e SEMICOLON								{: RESULT = new AST_STMT_ASSIGN(v,e); :}
-					| IF    LPAREN exp:cond RPAREN LBRACE stmtList:body RBRACE	{: RESULT = new AST_STMT_IF(   cond,body); :}
-					| WHILE LPAREN exp:cond RPAREN LBRACE stmtList:body RBRACE	{: RESULT = new AST_STMT_WHILE(cond,body); :}
-					;
+dec ::= varDec
+      | funcDec
+      | classDec
+      | arrayTypedef;
 
-exp			::=		INT:i								{: RESULT = new AST_EXP_INT(i);          :}
-					| var:v								{: RESULT = new AST_EXP_VAR(v);          :}
-					| exp:e1 PLUS  exp:e2				{: RESULT = new AST_EXP_BINOP(e1, e2, 0);:}
-					| exp:e1 MINUS exp:e2				{: RESULT = new AST_EXP_BINOP(e1, e2, 1);:}
-					;
+type ::= TYPE_INT {: RESULT = new AST_TYPE_INT(); :} // TODO
+      | TYPE_STRING {: RESULT = new AST_TYPE_STRING(); :}
+      | TYPE_VOID {: RESULT = new AST_TYPE_VOID(); :}
+      | ID {: RESULT = new AST_TYPE_ID($1); :};
+
+varDec ::= type ID SEMICOLON {: 
+    RESULT = new AST_VAR_DEC($1, $2); 
+:}
+       | type ID ASSIGN exp SEMICOLON {: 
+    RESULT = new AST_VAR_DEC($1, $2, $4); 
+:};
+
+funcDec ::= type ID LPAREN paramList RPAREN LBRACE stmtList RBRACE {: 
+    RESULT = new AST_FUNC_DEC($1, $2, $4, $7); 
+:};
+
+classDec ::= CLASS ID LBRACE cFieldList RBRACE {: 
+    RESULT = new AST_CLASS_DEC($2, $4); 
+:}
+          | CLASS ID EXTENDS ID LBRACE cFieldList RBRACE {: 
+    RESULT = new AST_CLASS_DEC($2, $4, $6); 
+:};
+
+arrayTypedef ::= ARRAY ID EQ type LBRACK RBRACK SEMICOLON {: 
+    RESULT = new AST_ARRAY_TYPEDEF($2, $4); 
+:};
+
+exp ::= var {: RESULT = $1; :}
+     | LPAREN exp RPAREN {: RESULT = $2; :}
+     | exp BINOP exp {: 
+    RESULT = new AST_EXP_BINOP($1, $3, $2); 
+:}
+     | ID LPAREN expList RPAREN {: 
+    RESULT = new AST_EXP_FUNC_CALL($1, $3); 
+:}
+     | MINUS INT {: 
+    RESULT = new AST_EXP_UNARY($1); 
+:}
+     | STRING {: 
+    RESULT = new AST_EXP_STRING($1); 
+:}
+     | INT {: 
+    RESULT = new AST_EXP_INT($1); 
+:};
+
+var ::= ID {: RESULT = new AST_VAR_SIMPLE($1); :}
+     | var DOT ID {: 
+    RESULT = new AST_VAR_FIELD($1, $3); 
+:}
+     | var LBRACK exp RBRACK {: 
+    RESULT = new AST_VAR_SUBSCRIPT($1, $3); 
+:};
+
+stmt ::= varDec
+      | var ASSIGN exp SEMICOLON {: 
+    RESULT = new AST_STMT_ASSIGN($1, $3); 
+:}
+      | RETURN exp? SEMICOLON {: 
+    RESULT = new AST_STMT_RETURN($2); 
+:}
+      | IF LPAREN exp RPAREN LBRACE stmtList RBRACE {: 
+    RESULT = new AST_STMT_IF($3, $6); 
+:}
+      | WHILE LPAREN exp RPAREN LBRACE stmtList RBRACE {: 
+    RESULT = new AST_STMT_WHILE($3, $6); 
+:}
+      | ID LPAREN expList RPAREN SEMICOLON {: 
+    RESULT = new AST_STMT_FUNC_CALL($1, $3); 
+:};
+
+newExp ::= NEW type {: 
+    RESULT = new AST_NEW_EXP($2); 
+:}
+        | NEW type LBRACK exp RBRACK {: 
+    RESULT = new AST_NEW_ARRAY($2, $4); 
+:};
+
+cField ::= varDec
+         | funcDec;
+
