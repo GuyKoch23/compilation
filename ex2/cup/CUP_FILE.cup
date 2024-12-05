@@ -1,17 +1,52 @@
-import java_cup.runtime.Symbol;
+/*************/
+/* IMPORT(S) */
+/*************/
+import java_cup.runtime.*;
+import AST.*;
 
-parser code {:
-    // Error handling: Report errors with line number
-    @Override
-    public void syntax_error(Symbol s) {
-        System.err.println("ERROR(" + s.left + ")");
-        System.exit(0);
-    }
+parser code 
+{:
+	public Lexer lexer;
 
-    @Override
-    public void unrecovered_syntax_error(Symbol s) {
-        syntax_error(s);
-    }
+	public Parser(Lexer lexer)
+	{
+		super(lexer);
+		this.lexer = lexer;
+	}
+	public void report_error(String message, Object info)
+	{
+		System.out.print("ERROR >> ");		
+		System.out.print("[");
+		System.out.print(lexer.getLine());
+		System.out.print(":");
+		System.out.print(lexer.getCharPos());
+		System.out.print("] ");		
+		System.exit(0);
+	}
+:}
+
+/************************/
+/* CUSTOMIZE CUP PARSER */
+/************************/
+scan with
+{:
+	Symbol s;
+	s = lexer.next_token();
+	//System.out.print(s.sym);
+	System.out.print("[");
+	System.out.print(lexer.getLine());
+	System.out.print(":");
+	System.out.print(lexer.getCharPos());
+	System.out.print("] ");
+	System.out.print(TokenNames.terminalNames[s.sym]);
+	if (s.value != null)
+	{
+		System.out.print("( ");
+		System.out.print(s.value);
+		System.out.print(" )");
+	}
+	System.out.print("\n");
+	return s; 
 :};
 
 terminal
@@ -36,9 +71,9 @@ precedence left PLUS, MINUS;
 precedence left TIMES, DIVIDE;
 
 start with program;
-
+ 
 program ::= dec+ {: 
-    RESULT = new AST_STMT_LIST($1);
+    RESULT = new AST_Node($1); // TODO: AST_PROGRAM
 :};
 
 dec ::= varDec
