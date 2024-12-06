@@ -1,11 +1,14 @@
 package AST;
 
-public class AST_EXP_NIL extends AST_EXP
-{
+public class AST_PARAM extends AST_STMT{
+
+    AST_TYPE type;
+    String id;
+
 	/******************/
 	/* CONSTRUCTOR(S) */
 	/******************/
-	public AST_EXP_NIL()
+	public AST_PARAM()
 	{
 		/******************************/
 		/* SET A UNIQUE SERIAL NUMBER */
@@ -15,24 +18,25 @@ public class AST_EXP_NIL extends AST_EXP
 		/***************************************/
 		/* PRINT CORRESPONDING DERIVATION RULE */
 		/***************************************/
-		System.out.format("====================== exp -> NIL\n");
+		//System.out.format("====================== exp -> NIL\n"); //TODO : check this
 	}
 
 	/************************************************/
-	/* The printing message for an NIL EXP AST node */
+	/* The printing message for a PARAM AST node */
 	/************************************************/
 	public void PrintMe()
 	{
 		/*******************************/
-		/* AST NODE TYPE = AST NIL EXP */
+		/* AST NODE TYPE = AST PARAM EXP */
 		/*******************************/
-		System.out.format("AST NODE NIL\n");
+        type.PrintMe();
+        System.out.format("AST PARAM ID(%s)\n", id);
 
 		/*********************************/
 		/* Print to AST GRAPHIZ DOT file */
 		/*********************************/
 		AST_GRAPHVIZ.getInstance().logNode(
 			SerialNumber,
-			String.format("NIL"));
+			String.format("PARAM ID(%s)",id));
 	}
 }

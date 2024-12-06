@@ -9,7 +9,7 @@ public class AST_EXP_BINOP extends AST_EXP
 	/******************/
 	/* CONSTRUCTOR(S) */
 	/******************/
-	public AST_EXP_BINOP(AST_EXP left,AST_EXP right,int OP)
+	public AST_EXP_BINOP(AST_EXP left,AST_EXP right, AST_BINOP OP)
 	{
 		/******************************/
 		/* SET A UNIQUE SERIAL NUMBER */
@@ -39,9 +39,15 @@ public class AST_EXP_BINOP extends AST_EXP
 		/*********************************/
 		/* CONVERT OP to a printable sOP */
 		/*********************************/
-		if (OP == 0) {sOP = "+";}
-		if (OP == 1) {sOP = "-";}
-		
+		if (OP instanceof AST_BINOP_PLUS) {sOP = "+";}
+		if (OP instanceof AST_BINOP_MINUS) {sOP = "-";}
+		if (OP instanceof AST_BINOP_TIMES) {sOP = "*";}
+		if (OP instanceof AST_BINOP_DIVIDE) {sOP = "/";}
+		if (OP instanceof AST_BINOP_LT) {sOP = "<";}
+		if (OP instanceof AST_BINOP_GT) {sOP = ">";}
+		if (OP instanceof AST_BINOP_EQ) {sOP = "=";}
+
+
 		/*************************************/
 		/* AST NODE TYPE = AST BINOP EXP */
 		/*************************************/

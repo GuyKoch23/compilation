@@ -1,11 +1,13 @@
 package AST;
 
-public class AST_EXP_NIL extends AST_EXP
+public class AST_PROGRAM extends AST_Node
 {
+	public AST_DEC_WRAPPER_LIST dLst;
+	
 	/******************/
 	/* CONSTRUCTOR(S) */
 	/******************/
-	public AST_EXP_NIL()
+	public AST_PROGRAM(AST_DEC_WRAPPER_LIST dLst)
 	{
 		/******************************/
 		/* SET A UNIQUE SERIAL NUMBER */
@@ -15,24 +17,31 @@ public class AST_EXP_NIL extends AST_EXP
 		/***************************************/
 		/* PRINT CORRESPONDING DERIVATION RULE */
 		/***************************************/
-		System.out.format("====================== exp -> NIL\n");
+		System.out.format("====================== program -> dLst[%s]\n", dLst);
+
+		/*******************************/
+		/* COPY INPUT DATA NENBERS ... */
+		/*******************************/
+		this.dLst = dLst;
 	}
 
 	/************************************************/
-	/* The printing message for an NIL EXP AST node */
+	/* The printing message for Program AST node */
 	/************************************************/
 	public void PrintMe()
 	{
 		/*******************************/
-		/* AST NODE TYPE = AST NIL EXP */
+		/* AST NODE TYPE = AST program EXP */
 		/*******************************/
-		System.out.format("AST NODE NIL\n");
-
+		System.out.format("AST NODE PROGRAM\n");
+        dLst.PrintMe();
 		/*********************************/
 		/* Print to AST GRAPHIZ DOT file */
 		/*********************************/
 		AST_GRAPHVIZ.getInstance().logNode(
 			SerialNumber,
-			String.format("NIL"));
+			String.format("AST NODE PROGRAM\n"));
+
+        AST_GRAPHVIZ.getInstance().logEdge(SerialNumber, SerialNumber);
 	}
 }

@@ -1,11 +1,11 @@
 package AST;
 
-public class AST_EXP_NIL extends AST_EXP
-{
+public class AST_TYPE_INT extends AST_TYPE {
+	
 	/******************/
 	/* CONSTRUCTOR(S) */
 	/******************/
-	public AST_EXP_NIL()
+	public AST_TYPE_INT()
 	{
 		/******************************/
 		/* SET A UNIQUE SERIAL NUMBER */
@@ -15,24 +15,24 @@ public class AST_EXP_NIL extends AST_EXP
 		/***************************************/
 		/* PRINT CORRESPONDING DERIVATION RULE */
 		/***************************************/
-		System.out.format("====================== exp -> NIL\n");
+		System.out.format("====================== type -> INT\n");
 	}
 
 	/************************************************/
-	/* The printing message for an NIL EXP AST node */
+	/* The printing message for an TYPE INT AST node */
 	/************************************************/
 	public void PrintMe()
 	{
 		/*******************************/
-		/* AST NODE TYPE = AST NIL EXP */
+		/* AST NODE TYPE = TYPE AST */
 		/*******************************/
-		System.out.format("AST NODE NIL\n");
+		System.out.format("AST NODE TYPE INT\n");
 
 		/*********************************/
 		/* Print to AST GRAPHIZ DOT file */
 		/*********************************/
 		AST_GRAPHVIZ.getInstance().logNode(
 			SerialNumber,
-			String.format("NIL"));
+			String.format("AST NODE TYPE INT"));
 	}
 }
