@@ -2,7 +2,7 @@ package AST;
 
 public class AST_EXP_BINOP extends AST_EXP
 {
-	int OP;
+	AST_BINOP OP;
 	public AST_EXP left;
 	public AST_EXP right;
 	
