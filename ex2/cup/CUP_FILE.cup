@@ -72,81 +72,105 @@ precedence left TIMES, DIVIDE;
 
 start with program;
  
-program ::= decList:v {: 
-    RESULT = new AST_PROGRAM(v);
+program ::= decList:dLst {: 
+    RESULT = new AST_PROGRAM(dLst);
 :};
 
-decList ::= dec:d {: RESULT = new AST_DEC_LIST(d, null); :}
-          | dec:d decList:l {: RESULT = new AST_DEC_LIST(d, l); :}
+decList ::= dec:d {: RESULT = new AST_DEC_WRAPPER_LIST(d, null); :}
+          | dec:d decList:l {: RESULT = new AST_DEC_WRAPPER_LIST(d, l); :}
 
-dec ::= varDec {: RESULT = new AST_VAR_DEC($1); :}
-    | funcDec {: RESULT = new AST_FUNC_DEC($1); :}
-    | classDec {: RESULT = new AST_CLASS_DEC($1); :}
-    | arrayTypedef {: RESULT = new AST_ARRAY_TYPEDEF_DEC($1); :};
+dec ::= varDec:v {: RESULT = new AST_DEC_WRAPPER(v); :}
+    | funcDec:f {: RESULT = new AST_DEC_WRAPPER(f); :}
+    | classDec:c {: RESULT = new AST_DEC_WRAPPER(c); :}
+    | arrayTypedef:a {: RESULT = new AST_DEC_WRAPPER(a); :};
 
 type ::= TYPE_INT {: RESULT = new AST_TYPE_INT(); :}
       | TYPE_STRING {: RESULT = new AST_TYPE_STRING(); :}
       | TYPE_VOID {: RESULT = new AST_TYPE_VOID(); :}
       | ID {: RESULT = new AST_TYPE_ID($1); :};
 
-varDec ::= type ID SEMICOLON {: 
-    RESULT = new AST_VAR_DER($1, $2, null);
+varDec ::= type:t ID:i SEMICOLON {: 
+    RESULT = new AST_VAR_DEC(t, i, null);
 :}
-       | type ID ASSIGN exp SEMICOLON {: 
-    RESULT = new AST_VAR_DER($1, $2, $4); 
+       | type:t ID:i ASSIGN exp:e SEMICOLON {: 
+    RESULT = new AST_VAR_DEC(t, i, e); 
 :};
-       | type ID ASSIGN newExp SEMICOLON {: 
-    RESULT = new AST_VAR_DER($1, $2, $4); 
+       | type:t ID:i ASSIGN newExp:e SEMICOLON {: 
+    RESULT = new AST_VAR_DEC(t, i, e); 
 :};
 
-funcDec ::= type ID LPAREN paramListOpt RPAREN LBRACE stmtList RBRACE {: 
-    RESULT = new AST_FUNC_DEC($1, $2, $4, $7); 
+funcDec ::= type:t ID:i LPAREN paramListOpt:pLst RPAREN LBRACE stmtList:stLst RBRACE {: 
+    RESULT = new AST_FUNC_DEC(t, i, pLst, stLst); 
 :};
 
 paramListOpt ::= /* empty */ {: RESULT = new AST_PARAM_LIST(); :}
-                | paramList {: RESULT = new AST_PARAM_LIST($1); :};
+                | paramList:l {: RESULT = new AST_PARAM_LIST(l); :};
 
-paramList ::= type ID {: RESULT = new AST_PARAM_LIST(new AST_PARAM($1, $2), null); :}
-            | type ID COMMA paramList {: RESULT = new AST_PARAM_LIST(new AST_PARAM($1, $2), $4); :};
+paramList ::= type:t ID:i {: RESULT = new AST_PARAM_LIST(new AST_PARAM(t, i), null); :}
+            | type:t ID:i COMMA paramList:l {: RESULT = new AST_PARAM_LIST(new AST_PARAM(t, i), l); :};
 
-classDec ::= CLASS ID LBRACE cFieldList RBRACE {: 
-    RESULT = new AST_CLASS_DEC($2, null, $4); 
+classDec ::= CLASS ID:i LBRACE cFieldList:l RBRACE {: 
+    RESULT = new AST_CLASS_DEC(i, null, l); 
 :}
-          | CLASS ID EXTENDS ID LBRACE cFieldList RBRACE {: 
-    RESULT = new AST_CLASS_DEC($2, $4, $6); 
+          | CLASS ID:ci EXTENDS ID:ei LBRACE cFieldList:l RBRACE {: 
+    RESULT = new AST_CLASS_DEC(ci, ei, l); 
 :};
 
 cFieldList ::= cField:c {: RESULT = new AST_CFIELD_LIST(c, null); :}
           | cField:c cFieldList:l {: RESULT = new AST_CFIELD_LIST(c, l); :}
 
-arrayTypedef ::= ARRAY ID EQ type LBRACK RBRACK SEMICOLON {: 
-    RESULT = new AST_ARRAY_TYPEDEF($2, $4); 
+cfield ::= varDec:v {: RESULT = new AST_VAR_DEC(v); :}
+    | funcDec:f {: RESULT = new AST_FUNC_DEC(f); :}
+
+arrayTypedef ::= ARRAY ID:i EQ type:t LBRACK RBRACK SEMICOLON {: 
+    RESULT = new AST_ARRAY_TYPEDEF(i, t); 
 :};
 
-exp ::= var {: RESULT = new AST_EXP_VAR($1); :}
-     | LPAREN exp RPAREN {: RESULT = new AST_EXP_VAR($2); :}
-     | exp BINOP exp {: 
-    RESULT = new AST_EXP_BINOP($1, $3, $2); 
+exp ::= var:v {: RESULT = new AST_EXP_VAR(v); :}
+     | LPAREN exp:e RPAREN {: RESULT = new AST_EXP_EXP(e); :}
+     | exp:e1 BINOP:b exp:e2 {: 
+    RESULT = new AST_EXP_BINOP(e1, e2, b); 
 :}
      | ID LPAREN expList RPAREN {: 
     RESULT = new AST_EXP_FUNC_CALL($1, $3); 
 :}
-     | MINUS INT {: 
-    RESULT = new AST_EXP_UNARY($1); 
+     | MINUS INT:i {: 
+    RESULT = new AST_EXP_MINUS_INT(i); 
 :}
-     | STRING {: 
-    RESULT = new AST_EXP_STRING($1); 
-:}
-     | INT {: 
-    RESULT = new AST_EXP_INT($1); 
+     | INT:i {: 
+    RESULT = new AST_EXP_INT(i); 
 :};
-
-var ::= ID {: RESULT = new AST_VAR_SIMPLE($1); :}
-     | var DOT ID {: 
-    RESULT = new AST_VAR_FIELD($1, $3); 
+     | STRING:s {: 
+    RESULT = new AST_EXP_STRING(s); 
 :}
-     | var LBRACK exp RBRACK {: 
-    RESULT = new AST_VAR_SUBSCRIPT($1, $3); 
+     | NIL {: 
+    RESULT = new AST_EXP_NIL(); 
+:};
+     | ID:i LPAREN RPAREN {: 
+    RESULT = new AST_EXP_FUNC(null, i, null); 
+:}; 
+     | ID:i LPAREN expListOpt:eLst RPAREN {: 
+    RESULT = new AST_EXP_FUNC(null, i, eLst); 
+:}; 
+     | var:v DOT ID:i LPAREN RPAREN {: 
+    RESULT = new AST_EXP_FUNC(v, i, null); 
+:}; 
+     | var:v DOT ID:i LPAREN expListOpt:eLst RPAREN {: 
+    RESULT = new AST_EXP_FUNC(v, i, eLst); 
+:}; 
+
+expListOpt ::= /* empty */ {: RESULT = new AST_EXP_WRAPPER_LIST(); :}
+                | expList:l {: RESULT = new AST_EXP_WRAPPER_LIST(l); :};
+
+expList ::= EXP:e {: RESULT = new AST_EXP_WRAPPER_LIST(new AST_EXP_WRAPPER(e), null); :}
+            | EXP:e COMMA expList:l {: RESULT = new AST_EXP_WRAPPER_LIST(new AST_EXP_WRAPPER(e), l); :};
+
+var ::= ID:i {: RESULT = new AST_VAR_SIMPLE(i); :}
+     | var:v DOT ID:i {: 
+    RESULT = new AST_VAR_FIELD(v, i); 
+:}
+     | var:v LBRACK exp:e RBRACK {: 
+    RESULT = new AST_VAR_SUBSCRIPT(v, e); 
 :};
 
 stmt ::= varDec
@@ -176,3 +200,4 @@ newExp ::= NEW type {:
 cField ::= varDec
          | funcDec;
 
+BINOP ::= PLUS | MINUS | TIMES | DIVIDE | LT | GT | EQ;
