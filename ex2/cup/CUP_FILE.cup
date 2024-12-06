@@ -90,13 +90,13 @@ type ::= TYPE_INT {: RESULT = new AST_TYPE_INT(); :}
       | ID {: RESULT = new AST_TYPE_ID($1); :};
 
 varDec ::= type ID SEMICOLON {: 
-    RESULT = new AST_VAR_DER_NULL($1, $2); // TODO: naming is bad
+    RESULT = new AST_VAR_DER($1, $2, null);
 :}
        | type ID ASSIGN exp SEMICOLON {: 
-    RESULT = new AST_VAR_DER_EXP($1, $2, $4); 
+    RESULT = new AST_VAR_DER($1, $2, $4); 
 :};
        | type ID ASSIGN newExp SEMICOLON {: 
-    RESULT = new AST_VAR_DER_NEW_EXP($1, $2, $4); 
+    RESULT = new AST_VAR_DER($1, $2, $4); 
 :};
 
 funcDec ::= type ID LPAREN paramListOpt RPAREN LBRACE stmtList RBRACE {: 
