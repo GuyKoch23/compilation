@@ -8,17 +8,12 @@ public class AST_PARAM extends AST_STMT{
 	/******************/
 	/* CONSTRUCTOR(S) */
 	/******************/
-	public AST_PARAM()
+	public AST_PARAM(AST_TYPE type, String id)
 	{
-		/******************************/
-		/* SET A UNIQUE SERIAL NUMBER */
-		/******************************/
 		SerialNumber = AST_Node_Serial_Number.getFresh();
-
-		/***************************************/
-		/* PRINT CORRESPONDING DERIVATION RULE */
-		/***************************************/
-		//System.out.format("====================== exp -> NIL\n"); //TODO : check this
+		System.out.format("====================== type id -> param\n"); //TODO : check this
+		this.type = type;
+		this.id = id;
 	}
 
 	/************************************************/
