@@ -49,17 +49,38 @@ scan with
 	return s; 
 :};
 
-terminal
-    // Keywords
-    CLASS, EXTENDS, NEW, RETURN, IF, WHILE, ARRAY,
-    TYPE_INT, TYPE_STRING, TYPE_VOID,
+terminal CLASS;
+terminal EXTENDS;
+terminal NEW;
+terminal RETURN;
+terminal IF;
+terminal WHILE;
+terminal ARRAY;
+terminal EQ;
+terminal PLUS;
+terminal MINUS;
+terminal TIMES;
+terminal DIVIDE;
+terminal LT;
+terminal GT;
+terminal LPAREN;
+terminal RPAREN;
+terminal LBRACE;
+terminal RBRACE;
+terminal LBRACK;
+terminal RBRACK;
+terminal DOT;
+terminal COMMA;
+terminal SEMICOLON;
+terminal NIL;
 
-    // Symbols
-    ASSIGN, EQ, PLUS, MINUS, TIMES, DIVIDE, LT, GT, LPAREN, RPAREN,
-    LBRACE, RBRACE, LBRACK, RBRACK, DOT, COMMA, SEMICOLON,
+terminal String TYPE_INT;
+terminal String TYPE_STRING;
+terminal String TYPE_VOID;
+terminal String ID;
 
-    // Literals
-    ID, INT, STRING, NIL;
+terminal Integer INT;
+terminal String STRING;
 
 non terminal AST_PROGRAM program; 
 non terminal AST_DEC_WRAPPER dec;
