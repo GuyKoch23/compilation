@@ -63,7 +63,8 @@ terminal
 
 non terminal
     program, dec, type, varDec, funcDec, classDec, arrayTypedef,
-    exp, var, stmt, newExp, cField;
+    exp, var, stmt, newExp, cField, paramListOpt, paramList, stmtList,
+    cFieldList, expListOpt, expList, BINOP;
 
 precedence left EQ;
 precedence left LT, GT;
@@ -71,13 +72,13 @@ precedence left PLUS, MINUS;
 precedence left TIMES, DIVIDE;
 
 start with program;
-
-decList ::= dec:d {: RESULT = new AST_DEC_WRAPPER_LIST(d, null); :}
-          | dec:d decList:l {: RESULT = new AST_DEC_WRAPPER_LIST(d, l); :}
-
+ 
 program ::= decList:dLst {: 
     RESULT = new AST_PROGRAM(dLst);
 :};
+
+decList ::= dec:d {: RESULT = new AST_DEC_WRAPPER_LIST(d, null); :}
+          | dec:d decList:l {: RESULT = new AST_DEC_WRAPPER_LIST(d, l); :}
 
 dec ::= varDec:v {: RESULT = new AST_DEC_WRAPPER(v); :}
     | funcDec:f {: RESULT = new AST_DEC_WRAPPER(f); :}
@@ -214,7 +215,7 @@ newExp ::= NEW type:t {:
     RESULT = new AST_NEW_EXP(t, e); 
 :};
 
-cfield ::= varDec:v {: RESULT = new AST_VAR_DEC(v); :}
+cField ::= varDec:v {: RESULT = new AST_VAR_DEC(v); :}
     | funcDec:f {: RESULT = new AST_FUNC_DEC(f); :}
 
 BINOP ::= PLUS {: RESULT = new AST_BINOP_PLUS(); :}
