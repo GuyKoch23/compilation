@@ -71,13 +71,13 @@ precedence left PLUS, MINUS;
 precedence left TIMES, DIVIDE;
 
 start with program;
- 
-program ::= decList:dLst {: 
-    RESULT = new AST_PROGRAM(dLst);
-:};
 
 decList ::= dec:d {: RESULT = new AST_DEC_WRAPPER_LIST(d, null); :}
           | dec:d decList:l {: RESULT = new AST_DEC_WRAPPER_LIST(d, l); :}
+
+program ::= decList:dLst {: 
+    RESULT = new AST_PROGRAM(dLst);
+:};
 
 dec ::= varDec:v {: RESULT = new AST_DEC_WRAPPER(v); :}
     | funcDec:f {: RESULT = new AST_DEC_WRAPPER(f); :}
