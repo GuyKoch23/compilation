@@ -73,6 +73,7 @@ terminal DOT;
 terminal COMMA;
 terminal SEMICOLON;
 terminal NIL;
+terminal ASSIGN;
 
 terminal String TYPE_INT;
 terminal String TYPE_STRING;
