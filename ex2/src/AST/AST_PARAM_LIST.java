@@ -1,8 +1,7 @@
 package AST;
 
 public class AST_PARAM_LIST extends AST_Node {
-    
-}
+     
 	/****************/
 	/* DATA MEMBERS */
 	/****************/
