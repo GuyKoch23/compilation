@@ -9,13 +9,13 @@ public class AST_BINOP_MINUS extends AST_BINOP {
 		/*******************************/
 		/* AST NODE TYPE = AST MINUS BINOP */
 		/*******************************/
-		System.out.format("PLUS\n");
+		System.out.format("MINUS\n");
 
 		/*********************************/
 		/* Print to AST GRAPHIZ DOT file */
 		/*********************************/
 		AST_GRAPHVIZ.getInstance().logNode(
 			SerialNumber,
-			String.format("PLUS"));
+			String.format("MINUS"));
 	}
 }
