@@ -64,7 +64,7 @@ terminal
 non terminal
     program, dec, type, varDec, funcDec, classDec, arrayTypedef,
     exp, var, stmt, newExp, cField, paramListOpt, paramList, stmtList,
-    cFieldList, expListOpt, expList, BINOP;
+    cFieldList, expListOpt, expList, BINOP, decList;
 
 precedence left EQ;
 precedence left LT, GT;
