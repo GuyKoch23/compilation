@@ -142,8 +142,8 @@ funcDec ::= type:t ID:i LPAREN paramListOpt:pLst RPAREN LBRACE stmtList:stLst RB
     RESULT = new AST_FUNC_DEC(t, i, pLst, stLst); 
 :};
 
-paramListOpt ::= /* empty */ {: RESULT = new AST_PARAM_LIST(null); :}
-                | paramList:l {: RESULT = new AST_PARAM_LIST(l); :};
+paramListOpt ::= /* empty */ {: RESULT = new AST_PARAM_LIST(null, null); :}
+                | paramList:l {: RESULT = l; :};
 
 paramList ::= type:t ID:i {: RESULT = new AST_PARAM_LIST(new AST_PARAM(t, i), null); :}
             | type:t ID:i COMMA paramList:l {: RESULT = new AST_PARAM_LIST(new AST_PARAM(t, i), l); :};
@@ -189,8 +189,8 @@ exp ::= var:v {: RESULT = new AST_EXP_VAR(v); :}
     RESULT = new AST_EXP_FUNC(v, i, eLst); 
 :}; 
 
-expListOpt ::= /* empty */ {: RESULT = new AST_EXP_WRAPPER_LIST(null); :}
-                | expList:l {: RESULT = new AST_EXP_WRAPPER_LIST(l); :};
+expListOpt ::= /* empty */ {: RESULT = new AST_EXP_WRAPPER_LIST(null, null); :}
+                | expList:l {: RESULT = l; :};
 
 expList ::= exp:e {: RESULT = new AST_EXP_WRAPPER_LIST(new AST_EXP_WRAPPER(e), null); :}
             | exp:e COMMA expList:l {: RESULT = new AST_EXP_WRAPPER_LIST(new AST_EXP_WRAPPER(e), l); :};
@@ -238,8 +238,8 @@ newExp ::= NEW type:t {:
     RESULT = new AST_NEW_EXP(t, e); 
 :};
 
-cField ::= varDec:v {: RESULT = new AST_VAR_DEC(v); :}
-    | funcDec:f {: RESULT = new AST_FUNC_DEC(f); :};
+cField ::= varDec:v {: RESULT = v; :}
+    | funcDec:f {: RESULT = f; :};
 
 BINOP ::= PLUS {: RESULT = new AST_BINOP_PLUS(); :}
     | MINUS {: RESULT = new AST_BINOP_MINUS(); :}

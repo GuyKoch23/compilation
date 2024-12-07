@@ -1,9 +1,9 @@
 package AST;
 
 public class AST_VAR_DEC extends AST_CFIELD {
-    AST_TYPE type;
-    String id;
-    AST_EXP exp;
+	AST_TYPE type;
+	String id;
+	AST_EXP exp;
 	
 	/******************/
 	/* CONSTRUCTOR(S) */

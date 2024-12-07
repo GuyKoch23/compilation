@@ -22,30 +22,13 @@ public class AST_EXP_WRAPPER_LIST extends AST_Node {
 		/* PRINT CORRESPONDING DERIVATION RULE */
 		/***************************************/
 		if (tail != null) System.out.print("====================== exp -> exp exps\n");
-		if (tail == null) System.out.print("====================== exp -> exp      \n");
+		if (head != null && tail == null) System.out.print("====================== exp -> exp      \n");
 
 		/*******************************/
 		/* COPY INPUT DATA NENBERS ... */
 		/*******************************/
 		this.head = head;
 		this.tail = tail;
-	}
-
-	public AST_EXP_WRAPPER_LIST(AST_EXP_WRAPPER_LIST lst)
-	{
-		/******************************/
-		/* SET A UNIQUE SERIAL NUMBER */
-		/******************************/
-		SerialNumber = AST_Node_Serial_Number.getFresh();
-
-		if (lst == null) {
-			this.head = null;
-			this.tail = null;
-			return;
-		}
-
-		this.head = lst.head;
-		this.tail = lst.tail;
 	}
 
 	/******************************************************/

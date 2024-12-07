@@ -2,14 +2,14 @@ package AST;
 
 public class AST_STMT_FUNC extends AST_STMT {
 
-    public AST_EXP_VAR var;
+  AST_VAR var;
 	String id;
 	AST_EXP_WRAPPER_LIST lst;
 
 	/******************/
 	/* CONSTRUCTOR(S) */
 	/******************/
-	public AST_STMT_FUNC(AST_EXP_VAR var, String id, AST_EXP_WRAPPER_LIST lst)
+	public AST_STMT_FUNC(AST_VAR var, String id, AST_EXP_WRAPPER_LIST lst)
 	{
 		/******************************/
 		/* SET A UNIQUE SERIAL NUMBER */

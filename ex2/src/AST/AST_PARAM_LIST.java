@@ -22,30 +22,13 @@ public class AST_PARAM_LIST extends AST_Node {
 		/* PRINT CORRESPONDING DERIVATION RULE */
 		/***************************************/
 		if (tail != null) System.out.print("====================== param -> param params\n");
-		if (tail == null) System.out.print("====================== param -> param      \n");
+		if (head != null && tail == null) System.out.print("====================== param -> param      \n");
 
 		/*******************************/
 		/* COPY INPUT DATA NENBERS ... */
 		/*******************************/
 		this.head = head;
 		this.tail = tail;
-	}
-
-	public AST_PARAM_LIST(AST_PARAM_LIST lst)
-	{
-		/******************************/
-		/* SET A UNIQUE SERIAL NUMBER */
-		/******************************/
-		SerialNumber = AST_Node_Serial_Number.getFresh();
-
-		if (lst == null) {
-			this.head = null;
-			this.tail = null;
-			return;
-		}
-
-		this.head = lst.head;
-		this.tail = lst.tail;
 	}
 
 	/******************************************************/
