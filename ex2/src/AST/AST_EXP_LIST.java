@@ -1,17 +1,17 @@
 package AST;
 
-public class AST_EXP_WRAPPER_LIST extends AST_Node {
+public class AST_EXP_LIST extends AST_Node {
 
 	/****************/
 	/* DATA MEMBERS */
 	/****************/
-	public AST_EXP_WRAPPER head;
-	public AST_EXP_WRAPPER_LIST tail;
+	public AST_EXP head;
+	public AST_EXP_LIST tail;
 
 	/******************/
 	/* CONSTRUCTOR(S) */
 	/******************/
-	public AST_EXP_WRAPPER_LIST(AST_EXP_WRAPPER head, AST_EXP_WRAPPER_LIST tail)
+	public AST_EXP_LIST(AST_EXP head, AST_EXP_LIST tail)
 	{
 		/******************************/
 		/* SET A UNIQUE SERIAL NUMBER */
@@ -31,7 +31,7 @@ public class AST_EXP_WRAPPER_LIST extends AST_Node {
 		this.tail = tail;
 	}
 
-	public AST_EXP_WRAPPER_LIST(AST_EXP_WRAPPER_LIST lst)
+	public AST_EXP_LIST(AST_EXP_LIST lst)
 	{
 		/******************************/
 		/* SET A UNIQUE SERIAL NUMBER */

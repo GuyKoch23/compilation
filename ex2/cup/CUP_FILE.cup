@@ -99,8 +99,8 @@ non terminal AST_PARAM_LIST paramListOpt;
 non terminal AST_PARAM_LIST paramList;
 non terminal AST_STMT_LIST stmtList;
 non terminal AST_CFIELD_LIST cFieldList;
-non terminal AST_EXP_WRAPPER_LIST expListOpt;
-non terminal AST_EXP_WRAPPER_LIST expList;
+non terminal AST_EXP_LIST expListOpt;
+non terminal AST_EXP_LIST expList;
 non terminal AST_BINOP BINOP;
 non terminal AST_DEC_WRAPPER_LIST decList;
 
@@ -148,8 +148,8 @@ paramListOpt ::= /* empty */ {: RESULT = new AST_PARAM_LIST(null); :}
 paramList ::= type:t ID:i {: RESULT = new AST_PARAM_LIST(new AST_PARAM(t, i), null); :}
             | type:t ID:i COMMA paramList:l {: RESULT = new AST_PARAM_LIST(new AST_PARAM(t, i), l); :};
 
-stmtList ::= stmt:s {: RESULT = new AST_STMT_LIST(new AST_STMT_WRAPPER(s), null); :}
-            | stmt:s stmtList:l {: RESULT = new AST_STMT_LIST(new AST_STMT_WRAPPER(s), l); :};
+stmtList ::= stmt:s {: RESULT = new AST_STMT_LIST(s, null); :}
+            | stmt:s stmtList:l {: RESULT = new AST_STMT_LIST(s, l); :};
 
 classDec ::= CLASS ID:i LBRACE cFieldList:l RBRACE {: 
     RESULT = new AST_CLASS_DEC(i, null, l); 
@@ -166,7 +166,7 @@ arrayTypedef ::= ARRAY ID:i EQ type:t LBRACK RBRACK SEMICOLON {:
 :};
 
 exp ::= var:v {: RESULT = new AST_EXP_VAR(v); :}
-     | LPAREN exp:e RPAREN {: RESULT = new AST_EXP_WRAPPER(e); :}
+     | LPAREN exp:e RPAREN {: RESULT = e; :}
      | exp:e1 BINOP:b exp:e2 {: 
     RESULT = new AST_EXP_BINOP(e1, e2, b); 
 :}
@@ -189,11 +189,11 @@ exp ::= var:v {: RESULT = new AST_EXP_VAR(v); :}
     RESULT = new AST_EXP_FUNC(v, i, eLst); 
 :}; 
 
-expListOpt ::= /* empty */ {: RESULT = new AST_EXP_WRAPPER_LIST(null); :}
-                | expList:l {: RESULT = new AST_EXP_WRAPPER_LIST(l); :};
+expListOpt ::= /* empty */ {: RESULT = new AST_EXP_LIST(null); :}
+                | expList:l {: RESULT = new AST_EXP_LIST(l); :};
 
-expList ::= exp:e {: RESULT = new AST_EXP_WRAPPER_LIST(new AST_EXP_WRAPPER(e), null); :}
-            | exp:e COMMA expList:l {: RESULT = new AST_EXP_WRAPPER_LIST(new AST_EXP_WRAPPER(e), l); :};
+expList ::= exp:e {: RESULT = new AST_EXP_LIST(e, null); :}
+            | exp:e COMMA expList:l {: RESULT = new AST_EXP_LIST(e, l); :};
 
 var ::= ID:i {: RESULT = new AST_VAR_SIMPLE(i); :}
      | var:v DOT ID:i {: 

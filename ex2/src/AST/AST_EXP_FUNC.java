@@ -2,14 +2,14 @@ package AST;
 
 public class AST_EXP_FUNC extends AST_EXP{
     
-	public AST_VAR var;
+		public AST_VAR var;
     public String id;
-    public AST_EXP_WRAPPER_LIST expList;
+    public AST_EXP_LIST expList;
 	
 	/******************/
 	/* CONSTRUCTOR(S) */
 	/******************/
-	public AST_EXP_FUNC(AST_VAR var,String id,AST_EXP_WRAPPER_LIST expList)
+	public AST_EXP_FUNC(AST_VAR var, String id, AST_EXP_LIST expList)
 	{
 		/******************************/
 		/* SET A UNIQUE SERIAL NUMBER */
