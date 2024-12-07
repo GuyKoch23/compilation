@@ -1,6 +1,6 @@
 package AST;
 
-public class AST_ARRAY_TYPEDEF_DEC extends AST_DEC {
+public class AST_ARRAY_TYPEDEF extends AST_DEC {
 
     String id;
     AST_TYPE type;
@@ -8,7 +8,7 @@ public class AST_ARRAY_TYPEDEF_DEC extends AST_DEC {
 	/******************/
 	/* CONSTRUCTOR(S) */
 	/******************/
-	public AST_ARRAY_TYPEDEF_DEC(String id, AST_TYPE type)
+	public AST_ARRAY_TYPEDEF(String id, AST_TYPE type)
 	{
 		/******************************/
 		/* SET A UNIQUE SERIAL NUMBER */
@@ -28,7 +28,7 @@ public class AST_ARRAY_TYPEDEF_DEC extends AST_DEC {
 	}
 
 	/************************************************/
-	/* The printing message for VAR DEC AST node */
+	/* The printing message for VAR AST node */
 	/************************************************/
 	public void PrintMe()
 	{
@@ -44,6 +44,6 @@ public class AST_ARRAY_TYPEDEF_DEC extends AST_DEC {
 		/*********************************/
 		AST_GRAPHVIZ.getInstance().logNode(
 			SerialNumber,
-			String.format("ARRAY TYPE DEF DEC ID(%s)",id));
+			String.format("ARRAY TYPE DEF ID(%s)",id));
 	}
 }
