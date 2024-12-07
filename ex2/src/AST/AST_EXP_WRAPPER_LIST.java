@@ -11,7 +11,7 @@ public class AST_EXP_WRAPPER_LIST extends AST_Node {
 	/******************/
 	/* CONSTRUCTOR(S) */
 	/******************/
-	public AST_EXP_WRAPPER_LIST(AST_EXP_WRAPPER head,AST_EXP_WRAPPER_LIST tail)
+	public AST_EXP_WRAPPER_LIST(AST_EXP_WRAPPER head, AST_EXP_WRAPPER_LIST tail)
 	{
 		/******************************/
 		/* SET A UNIQUE SERIAL NUMBER */
@@ -29,6 +29,23 @@ public class AST_EXP_WRAPPER_LIST extends AST_Node {
 		/*******************************/
 		this.head = head;
 		this.tail = tail;
+	}
+
+	public AST_EXP_WRAPPER_LIST(AST_EXP_WRAPPER_LIST lst)
+	{
+		/******************************/
+		/* SET A UNIQUE SERIAL NUMBER */
+		/******************************/
+		SerialNumber = AST_Node_Serial_Number.getFresh();
+
+		if (lst == null) {
+			this.head = null;
+			this.tail = null;
+			return;
+		}
+
+		this.head = lst.head;
+		this.tail = lst.tail;
 	}
 
 	/******************************************************/

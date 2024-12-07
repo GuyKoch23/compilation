@@ -31,6 +31,23 @@ public class AST_PARAM_LIST extends AST_Node {
 		this.tail = tail;
 	}
 
+	public AST_PARAM_LIST(AST_PARAM_LIST lst)
+	{
+		/******************************/
+		/* SET A UNIQUE SERIAL NUMBER */
+		/******************************/
+		SerialNumber = AST_Node_Serial_Number.getFresh();
+
+		if (lst == null) {
+			this.head = null;
+			this.tail = null;
+			return;
+		}
+
+		this.head = lst.head;
+		this.tail = lst.tail;
+	}
+
 	/******************************************************/
 	/* The printing message for a dec list AST node */
 	/******************************************************/
