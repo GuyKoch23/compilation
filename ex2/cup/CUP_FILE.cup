@@ -238,8 +238,8 @@ newExp ::= NEW type:t {:
     RESULT = new AST_NEW_EXP(t, e); 
 :};
 
-cField ::= varDec:v {: RESULT = new AST_VAR_DEC(v); :}
-    | funcDec:f {: RESULT = new AST_FUNC_DEC(f); :};
+cField ::= varDec:v {: RESULT = v; :}
+    | funcDec:f {: RESULT = f; :};
 
 BINOP ::= PLUS {: RESULT = new AST_BINOP_PLUS(); :}
     | MINUS {: RESULT = new AST_BINOP_MINUS(); :}
