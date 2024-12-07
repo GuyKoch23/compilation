@@ -104,7 +104,7 @@ funcDec ::= type:t ID:i LPAREN paramListOpt:pLst RPAREN LBRACE stmtList:stLst RB
     RESULT = new AST_FUNC_DEC(t, i, pLst, stLst); 
 :};
 
-paramListOpt ::= /* empty */ {: RESULT = new AST_PARAM_LIST(); :}
+paramListOpt ::= /* empty */ {: RESULT = new AST_PARAM_LIST(null); :}
                 | paramList:l {: RESULT = new AST_PARAM_LIST(l); :};
 
 paramList ::= type:t ID:i {: RESULT = new AST_PARAM_LIST(new AST_PARAM(t, i), null); :}
