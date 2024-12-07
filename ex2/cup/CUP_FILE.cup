@@ -78,7 +78,7 @@ program ::= decList:dLst {:
 :};
 
 decList ::= dec:d {: RESULT = new AST_DEC_WRAPPER_LIST(d, null); :}
-          | dec:d decList:l {: RESULT = new AST_DEC_WRAPPER_LIST(d, l); :}
+          | dec:d decList:l {: RESULT = new AST_DEC_WRAPPER_LIST(d, l); :};
 
 dec ::= varDec:v {: RESULT = new AST_DEC_WRAPPER(v); :}
     | funcDec:f {: RESULT = new AST_DEC_WRAPPER(f); :}
@@ -95,7 +95,7 @@ varDec ::= type:t ID:i SEMICOLON {:
 :}
        | type:t ID:i ASSIGN exp:e SEMICOLON {: 
     RESULT = new AST_VAR_DEC(t, i, e); 
-:};
+:}
        | type:t ID:i ASSIGN newExp:e SEMICOLON {: 
     RESULT = new AST_VAR_DEC(t, i, e); 
 :};
@@ -121,7 +121,7 @@ classDec ::= CLASS ID:i LBRACE cFieldList:l RBRACE {:
 :};
 
 cFieldList ::= cField:c {: RESULT = new AST_CFIELD_LIST(c, null); :}
-          | cField:c cFieldList:l {: RESULT = new AST_CFIELD_LIST(c, l); :}
+          | cField:c cFieldList:l {: RESULT = new AST_CFIELD_LIST(c, l); :};
 
 arrayTypedef ::= ARRAY ID:i EQ type:t LBRACK RBRACK SEMICOLON {: 
     RESULT = new AST_ARRAY_TYPEDEF(i, t); 
@@ -140,22 +140,22 @@ exp ::= var:v {: RESULT = new AST_EXP_VAR(v); :}
 :}
      | INT:i {: 
     RESULT = new AST_EXP_INT(i); 
-:};
+:}
      | STRING:s {: 
     RESULT = new AST_EXP_STRING(s); 
 :}
      | NIL {: 
     RESULT = new AST_EXP_NIL(); 
-:};
+:}
      | ID:i LPAREN RPAREN {: 
     RESULT = new AST_EXP_FUNC(null, i, null); 
-:}; 
+:}
      | ID:i LPAREN expListOpt:eLst RPAREN {: 
     RESULT = new AST_EXP_FUNC(null, i, eLst); 
-:}; 
+:}
      | var:v DOT ID:i LPAREN RPAREN {: 
     RESULT = new AST_EXP_FUNC(v, i, null); 
-:}; 
+:}
      | var:v DOT ID:i LPAREN expListOpt:eLst RPAREN {: 
     RESULT = new AST_EXP_FUNC(v, i, eLst); 
 :}; 
@@ -197,13 +197,13 @@ stmt ::= varDec:v {:
 :}
      | ID:i LPAREN RPAREN SEMICOLON {: 
     RESULT = new AST_STMT_FUNC(null, i, null); 
-:}; 
+:}
      | ID:i LPAREN expListOpt:eLst RPAREN SEMICOLON {: 
     RESULT = new AST_STMT_FUNC(null, i, eLst); 
-:}; 
+:}
      | var:v DOT ID:i LPAREN RPAREN SEMICOLON {: 
     RESULT = new AST_STMT_FUNC(v, i, null); 
-:}; 
+:}
      | var:v DOT ID:i LPAREN expListOpt:eLst RPAREN SEMICOLON {: 
     RESULT = new AST_STMT_FUNC(v, i, eLst); 
 :}; 
@@ -216,7 +216,7 @@ newExp ::= NEW type:t {:
 :};
 
 cField ::= varDec:v {: RESULT = new AST_VAR_DEC(v); :}
-    | funcDec:f {: RESULT = new AST_FUNC_DEC(f); :}
+    | funcDec:f {: RESULT = new AST_FUNC_DEC(f); :};
 
 BINOP ::= PLUS {: RESULT = new AST_BINOP_PLUS(); :}
     | MINUS {: RESULT = new AST_BINOP_MINUS(); :}
