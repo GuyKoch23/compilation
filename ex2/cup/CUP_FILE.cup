@@ -160,7 +160,7 @@ exp ::= var:v {: RESULT = new AST_EXP_VAR(v); :}
     RESULT = new AST_EXP_FUNC(v, i, eLst); 
 :}; 
 
-expListOpt ::= /* empty */ {: RESULT = new AST_EXP_WRAPPER_LIST(); :}
+expListOpt ::= /* empty */ {: RESULT = new AST_EXP_WRAPPER_LIST(null); :}
                 | expList:l {: RESULT = new AST_EXP_WRAPPER_LIST(l); :};
 
 expList ::= exp:e {: RESULT = new AST_EXP_WRAPPER_LIST(new AST_EXP_WRAPPER(e), null); :}
