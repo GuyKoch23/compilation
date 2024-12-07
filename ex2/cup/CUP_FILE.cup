@@ -88,7 +88,7 @@ dec ::= varDec:v {: RESULT = new AST_DEC_WRAPPER(v); :}
 type ::= TYPE_INT {: RESULT = new AST_TYPE_INT(); :}
       | TYPE_STRING {: RESULT = new AST_TYPE_STRING(); :}
       | TYPE_VOID {: RESULT = new AST_TYPE_VOID(); :}
-      | ID {: RESULT = new AST_TYPE_ID($1); :};
+      | ID:i {: RESULT = new AST_TYPE_ID(i); :};
 
 varDec ::= type:t ID:i SEMICOLON {: 
     RESULT = new AST_VAR_DEC(t, i, null);
