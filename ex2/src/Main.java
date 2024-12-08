@@ -44,6 +44,7 @@ public class Main
 			/***********************************/
 			AST = (AST_PROGRAM) p.parse().value;
 			file_writer.write("OK\n");
+			file_writer.close();
 			
 			/*************************/
 			/* [6] Print the AST ... */
@@ -53,7 +54,7 @@ public class Main
 			/*************************/
 			/* [7] Close output file */
 			/*************************/
-			file_writer.close();
+			
 			
 			/*************************************/
 			/* [8] Finalize AST GRAPHIZ DOT file */
