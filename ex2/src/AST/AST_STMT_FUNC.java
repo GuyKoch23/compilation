@@ -35,7 +35,7 @@ public class AST_STMT_FUNC extends AST_STMT {
 		/* AST NODE TYPE = AST STMT FUNC */
 		/*******************************/
 		var.PrintMe();
-		System.out.format("AST STMT FUNC ID(%s)\n", id);
+		System.out.format("AST STMT FUNC \n");
         lst.PrintMe();
 
 		/*********************************/
