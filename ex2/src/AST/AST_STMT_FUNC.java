@@ -45,7 +45,8 @@ public class AST_STMT_FUNC extends AST_STMT {
 			SerialNumber,
 			String.format("AST STMT FUNC"));
         
-        AST_GRAPHVIZ.getInstance().logEdge(SerialNumber, var.SerialNumber);
+		// todo: this is a problem when var is null, now commented out but need to check.
+        //AST_GRAPHVIZ.getInstance().logEdge(SerialNumber, var.SerialNumber);
 		AST_GRAPHVIZ.getInstance().logEdge(SerialNumber, lst.SerialNumber);
 	}
 }
