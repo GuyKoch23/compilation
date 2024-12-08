@@ -74,6 +74,7 @@ terminal COMMA;
 terminal SEMICOLON;
 terminal NIL;
 terminal ASSIGN;
+terminal ERROR;
 
 terminal String TYPE_INT;
 terminal String TYPE_STRING;
